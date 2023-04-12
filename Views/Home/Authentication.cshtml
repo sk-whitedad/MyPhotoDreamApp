@@ -1,4 +1,4 @@
-﻿@model Program
+﻿@model MyPhotoDreamApp.Models.User
 
 @{
     ViewData["Title"] = "Authentication";
@@ -12,10 +12,10 @@
         <div class="form">
             <form asp-action="Authentication" asp-controller="home" >
                 <p>
-                    <input type="text" placeholder="username">
+                    <input asp-for="Name" type="text" placeholder="username">
                 </p>
                 <p>
-                    <input type="password" placeholder="password">
+                    <input asp-for="Password" type="password" placeholder="password">
                 </p>
                 <p>
                     <input type="submit" value="Войти" />
@@ -25,10 +25,3 @@
         </div>
     </div>
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-

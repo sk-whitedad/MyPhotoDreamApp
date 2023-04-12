@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using MyPhotoDreamApp.Models;
+using System;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace MyPhotoDreamApp.Controllers
 {
@@ -8,6 +12,7 @@ namespace MyPhotoDreamApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         ApplicationContext db;
+        JwtSecurityToken jwt;
 
         public HomeController(ILogger<HomeController> logger, ApplicationContext context)
         {
@@ -34,7 +39,25 @@ namespace MyPhotoDreamApp.Controllers
         public async Task<IActionResult> Authentication(User user)
         {
             // проходим аутентификацию
-            return RedirectToAction("Index");
+     
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Name) };
+            jwt = new JwtSecurityToken(
+                    issuer: AuthOptions.ISSUER,
+                    audience: AuthOptions.AUDIENCE,
+                    claims: claims,
+                    expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)), // время действия 2 минуты
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+            // формируем ответ
+            var response = new
+            {
+                access_token = encodedJwt,
+                username = user.Name
+            };
+
+            return new JsonResult(response);
+
         }
 
 
