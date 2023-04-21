@@ -1,23 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using MyPhotoDreamApp.Helpers;
 using MyPhotoDreamApp.Models;
-using System;
+using MyPhotoDreamApp.ViewModels;
 using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace MyPhotoDreamApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        ApplicationContext db;
-        JwtSecurityToken jwt;
+        ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationContext context)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
-            db = context;
+            _db = db;
         }
 
         public IActionResult Index()
@@ -30,6 +25,7 @@ namespace MyPhotoDreamApp.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Authentication()
         {
             return View();
@@ -39,26 +35,40 @@ namespace MyPhotoDreamApp.Controllers
         public async Task<IActionResult> Authentication(User user)
         {
             // проходим аутентификацию
-     
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Name) };
-            jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    claims: claims,
-                    expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)), // время действия 2 минуты
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            // формируем ответ
-            var response = new
-            {
-                access_token = encodedJwt,
-                username = user.Name
-            };
-
-            return new JsonResult(response);
-
+            return View();
         }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult CheckPhoneNumber(UserViewModel user)
+        {
+            if (user.PhoneNumber == "123456789")
+                return Json(false);
+            return Json(true);
+        }
+
+        [HttpGet]
+        public IActionResult Registration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registration(UserViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                await _db.Users.AddAsync(new User
+                {
+                    PhoneNumber = user.PhoneNumber,
+                    Password = HashPasswordHelper.HashPassowrd(user.Password),
+                    Role = Enum.Role.User,
+                });
+                await _db.SaveChangesAsync();
+                return RedirectToAction("Authentication");
+            }
+            return View(user);
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

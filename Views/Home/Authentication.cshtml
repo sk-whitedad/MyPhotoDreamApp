@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Authentication";
+    Layout = "_Layout";
 }
 
 <h1>Авторизация</h1>
@@ -12,15 +13,15 @@
         <div class="form">
             <form asp-action="Authentication" asp-controller="home" >
                 <p>
-                    <input asp-for="Name" type="text" placeholder="username">
+                    <input asp-for="PhoneNumber" type="text" placeholder="номер телефона">
                 </p>
                 <p>
-                    <input asp-for="Password" type="password" placeholder="password">
+                    <input asp-for="Password" type="password" placeholder="пароль">
                 </p>
                 <p>
-                    <input type="submit" value="Войти" />
+                    <input type="submit" value="Отправить" />
                 </p>
-                <p class="message">Еще не зарегистрированы? <a href="#">Регистрация</a></p>
+                <p class="message">Еще не зарегистрированы? <a asp-controller="Home" asp-action="Registration" >Регистрация</a></p>
             </form>
         </div>
     </div>
