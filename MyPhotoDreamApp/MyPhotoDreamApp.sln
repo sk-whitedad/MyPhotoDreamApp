@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPhotoDreamApp", "MyPhotoDreamApp.csproj", "{58D40336-6D9F-455F-ACF9-635DF702C881}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{3845C208-3F6E-4CA4-BFB2-F2DFED05D529}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPhotoDreamApp.Service", "..\MyPhotoDreamApp.Service\MyPhotoDreamApp.Service.csproj", "{04D8A2EA-5E3C-4AD4-BB7F-A4E9A3FB069F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AC757A92-307C-463A-A281-67B8B49AD8CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPhotoDreamApp.Domain", "..\MyPhotoDreamApp.Domain\MyPhotoDreamApp.Domain.csproj", "{88C3FC27-A202-409C-B44A-1BB097C60F6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{EBC1D4E1-8402-4A31-A59C-FB4C26E72D52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPhotoDreamApp.DAL", "..\MyPhotoDreamApp.DAL\MyPhotoDreamApp.DAL.csproj", "{AB136527-8431-4978-9689-7A5CC83D266F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58D40336-6D9F-455F-ACF9-635DF702C881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D40336-6D9F-455F-ACF9-635DF702C881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D40336-6D9F-455F-ACF9-635DF702C881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D40336-6D9F-455F-ACF9-635DF702C881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D8A2EA-5E3C-4AD4-BB7F-A4E9A3FB069F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D8A2EA-5E3C-4AD4-BB7F-A4E9A3FB069F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D8A2EA-5E3C-4AD4-BB7F-A4E9A3FB069F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D8A2EA-5E3C-4AD4-BB7F-A4E9A3FB069F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C3FC27-A202-409C-B44A-1BB097C60F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C3FC27-A202-409C-B44A-1BB097C60F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C3FC27-A202-409C-B44A-1BB097C60F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C3FC27-A202-409C-B44A-1BB097C60F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB136527-8431-4978-9689-7A5CC83D266F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB136527-8431-4978-9689-7A5CC83D266F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB136527-8431-4978-9689-7A5CC83D266F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB136527-8431-4978-9689-7A5CC83D266F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{04D8A2EA-5E3C-4AD4-BB7F-A4E9A3FB069F} = {3845C208-3F6E-4CA4-BFB2-F2DFED05D529}
+		{88C3FC27-A202-409C-B44A-1BB097C60F6A} = {AC757A92-307C-463A-A281-67B8B49AD8CF}
+		{AB136527-8431-4978-9689-7A5CC83D266F} = {EBC1D4E1-8402-4A31-A59C-FB4C26E72D52}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54A33182-4389-413A-98DB-3AF3387A6381}
+	EndGlobalSection
+EndGlobal
