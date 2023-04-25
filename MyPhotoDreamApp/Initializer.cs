@@ -11,11 +11,13 @@ namespace MyPhotoDreamApp
         public static void InitializeRepositories(this IServiceCollection services)
         {
             services.AddScoped<IBaseRepository<User>, UserRepository>();
-        }
+			services.AddScoped<IBaseRepository<CategoryProduct>, CategoryRepository>();
+		}
 
         public static void InitializeServices(this IServiceCollection services)
         {
-            services.AddScoped<IAccountService, AccountService>();
-        }
+			services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ICategoryProductService, CategoryProductService>();
+		}
     }
 }

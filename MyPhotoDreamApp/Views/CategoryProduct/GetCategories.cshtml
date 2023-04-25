@@ -1,0 +1,36 @@
+﻿@model List<MyPhotoDreamApp.Domain.Entity.CategoryProduct>
+
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Categories";
+}
+<h1>Категории</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+				<table class="iksweb">
+					<thead>
+						<tr>
+							<td>№</td>
+							<td>Наименование категории</td>
+							<td>Описание</td>
+						</tr>
+					</thead>
+					<tbody>
+						@{int i = 0;}
+						@foreach (var item in Model)
+						{
+							i++;
+							<tr>
+								<td>@i.ToString()</td>
+								<td>
+							<a asp-action="GetCategory" asp-controller="CategoryProduct" asp-route-Id="@item.Id">@item.Name</a>
+								</td>
+								<td>@item.Description</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+    </div>
+</div>

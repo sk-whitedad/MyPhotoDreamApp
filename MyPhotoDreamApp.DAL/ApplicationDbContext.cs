@@ -10,6 +10,8 @@ namespace MyPhotoDreamApp.DAL
     public class ApplicationDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -25,7 +27,7 @@ namespace MyPhotoDreamApp.DAL
                     new User
                     {
                         Id = 1,
-                        PhoneNumber = "111",
+                        PhoneNumber = "1234567890",
                         Password = HashPasswordHelper.HashPassowrd("123456"),
                         Role = Role.Admin
                     });
@@ -33,6 +35,19 @@ namespace MyPhotoDreamApp.DAL
                 builder.Property(x => x.PhoneNumber).IsRequired();
                 builder.Property(x => x.Password).IsRequired();
                 builder.Property(x => x.Role).IsRequired();
+            });
+
+            modelBuilder.Entity<CategoryProduct>(builder =>
+            {
+                builder.ToTable("CategoryProducts").HasKey(x => x.Id);
+                builder.HasData(
+                    new CategoryProduct
+                    {
+                        Id = 1,
+                        Name = "Печать фото",
+                    });
+                builder.Property(x => x.Id).ValueGeneratedOnAdd();
+                builder.Property(x => x.Name).IsRequired();
             });
 
         }

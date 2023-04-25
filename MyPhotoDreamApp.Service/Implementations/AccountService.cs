@@ -31,7 +31,7 @@ namespace MyPhotoDreamApp.Service.Implementations
                         Description = "Пользователь не найден"
                     };
                 }
-            
+
                 if (user.Password != HashPasswordHelper.HashPassowrd(model.Password))
                 {
                     return new BaseResponse<ClaimsIdentity>
@@ -56,7 +56,6 @@ namespace MyPhotoDreamApp.Service.Implementations
                     StatusCode = StatusCode.InternalServerError
                 };
             }
-            throw new NotImplementedException();
         }
 
         public async Task<BaseResponse<ClaimsIdentity>> Register(RegisterViewModel model)

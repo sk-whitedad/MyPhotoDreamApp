@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Models;
 using System.Diagnostics;
@@ -12,21 +13,9 @@ namespace MyPhotoDreamApp.Controllers
             return View();
         }
 
+        
         public IActionResult Contacts()
         {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Authentication()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Authentication(User user)
-        {
-            // проходим аутентификацию
             return View();
         }
 

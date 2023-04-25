@@ -1,0 +1,30 @@
+﻿@model MyPhotoDreamApp.Domain.Entity.CategoryProduct
+
+@{
+    ViewData["Title"] = "Login";
+ 
+}
+
+<h1>Категория</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div class="form">
+            <form asp-action="GetCategory" asp-controller="CategoryProduct" asp-route-Id="@Model.Id">
+                <div asp-validation-summary="All"></div>
+                <p>
+                    <input asp-for="Name" type="text" value="@Model.Name">
+                </p>
+                <p>
+                    <input asp-for="Description" type="text" placeholder="Описание" value="@Model.Description">
+                </p>
+                <p>
+                    <input type="button" onclick="history.back(-2); return false;" value="Назад" />
+                    <input type="submit" value="Сохранить" />
+                </p>
+
+            </form>
+        </div>
+    </div>
+</div>
