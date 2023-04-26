@@ -36,7 +36,7 @@ namespace MyPhotoDreamApp.Controllers
 			var response = await _categoryService.GetCategory(id);
 			if (response.StatusCode == Domain.Enum.StatusCode.OK)
 			{
-				return PartialView(response.Data);
+				return View(response.Data);
 			}
 
 			return RedirectToAction("GetCategories", "CategoryProduct");
@@ -44,19 +44,13 @@ namespace MyPhotoDreamApp.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetCategory(int id, CategoryProduct category)
+        public async Task<IActionResult> GetCategory(int id, CategoryViewModel category)
         {
             var response = await _categoryService.GetCategory(id);
             if (response.StatusCode == Domain.Enum.StatusCode.OK)
             {
-				var _category = new CategoryViewModel()
-				{
-					Id = id,
-					Name = category.Name,
-					Description = category.Description,
-				};
-
-				_categoryService.Edit(id, _category);
+				category.Id = id;
+				await _categoryService.Edit(id, category);
                 return RedirectToAction("GetCategories", "CategoryProduct");
             }
 

@@ -1,10 +1,5 @@
 ﻿using MyPhotoDreamApp.DAL.Interfaces;
 using MyPhotoDreamApp.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyPhotoDreamApp.DAL.Repositories
 {
@@ -36,10 +31,15 @@ namespace MyPhotoDreamApp.DAL.Repositories
 
         public async Task<CategoryProduct> Update(CategoryProduct entity)
         {
-            _db.CategoryProducts.Update(entity);
-            await _db.SaveChangesAsync();
-
-            return entity;
+            var category = _db.CategoryProducts.FirstOrDefault(x => x.Id == entity.Id);
+            if (category != null)
+            {
+                category.Name = entity.Name;
+                category.Description = entity.Description;
+                await _db.SaveChangesAsync();
+                return category;
+            }
+            return category;
         }
     }
 }
