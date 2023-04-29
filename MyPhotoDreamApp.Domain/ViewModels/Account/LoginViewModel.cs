@@ -10,8 +10,9 @@ namespace MyPhotoDreamApp.Domain.ViewModels.Account
 {
     public class LoginViewModel
     {
-        [MaxLength(10, ErrorMessage = "Номер телефонадолжен иметь длину 10 символов")]
-        [MinLength(10, ErrorMessage = "Номер телефонадолжен иметь длину 10 символов")]
+        [DataType(DataType.PhoneNumber)]
+        [MaxLength(10, ErrorMessage = "Номер телефона должен иметь длину 10 символов")]
+        [MinLength(10, ErrorMessage = "Номер телефона должен иметь длину 10 символов")]
         [Required(ErrorMessage = "Укажите номер телефона")]
         [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }

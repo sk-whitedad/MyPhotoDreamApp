@@ -1,4 +1,4 @@
-﻿@model List<MyPhotoDreamApp.Domain.Entity.CategoryProduct>
+﻿@model MyPhotoDreamApp.Domain.ViewModels.Category.CategoriesListViewModel
 
 @{
 	Layout = "_Layout";
@@ -15,11 +15,12 @@
 							<td>№</td>
 							<td>Наименование категории</td>
 							<td>Описание</td>
-						</tr>
+							<td></td>
+				</tr>
 					</thead>
 					<tbody>
 						@{int i = 0;}
-						@foreach (var item in Model)
+						@foreach (var item in Model.CategoryList)
 						{
 							i++;
 							<tr>
@@ -28,9 +29,24 @@
 							<a asp-action="GetCategory" asp-controller="CategoryProduct" asp-route-Id="@item.Id">@item.Name</a>
 								</td>
 								<td>@item.Description</td>
-							</tr>
+								<td>
+							<form method="post" asp-route-Id="@item.Id" asp-action="DellCategories" asp-controller="CategoryProduct">
+										<input type="submit" value="Удалить" />
+									</form>
+								</td>
+					</tr>
 						}
 					</tbody>
 				</table>
+
+		<form method="post" asp-action="AddCategory" asp-controller="CategoryProduct">
+			<div asp-validation-summary="All"></div>
+			<p>
+		    	<input asp-for="@Model.NewName" placeholder="название категории">
+				<input asp-for="@Model.NewDescription" placeholder="описание категории">
+				<input type="submit" value="Создать" />
+			</p>
+		</form>
+
     </div>
 </div>

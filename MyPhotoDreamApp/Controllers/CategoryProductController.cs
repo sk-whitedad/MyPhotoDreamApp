@@ -21,13 +21,37 @@ namespace MyPhotoDreamApp.Controllers
 		{
 			//CategoryProduct/GetCategories
 			var response = _categoryService.GetCategories();
+			var categoryList = new CategoriesListViewModel()
+			{
+				CategoryList = response.Data
+			};
 			if (response.StatusCode == Domain.Enum.StatusCode.OK)
 			{
-				return PartialView(response.Data);
+				return View(categoryList);
 			}
 
 			return RedirectToAction("Index", "Home");
 		}
+
+		[HttpPost]
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> AddCategory(CategoriesListViewModel categoryList)
+		{
+			var response = _categoryService.GetCategories();
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				var category = new CategoryViewModel()
+				{
+					Name = categoryList.NewName,
+					Description = categoryList.NewDescription
+				};
+				await _categoryService.Create(category);
+				return RedirectToAction("GetCategories", "CategoryProduct");
+			}
+
+			return View("Ошибка записи");
+		}
+
 
 		[HttpGet]
 		[Authorize(Roles = "Admin")]
@@ -57,6 +81,24 @@ namespace MyPhotoDreamApp.Controllers
             return View("Ошибка записи");
         }
 
+		
+		[HttpPost]
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> DellCategories(int id)
+		{
+			var response = _categoryService.GetCategories();
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				var category = response.Data.FirstOrDefault(x => x.Id == id);
+				if (category != null)
+				{
+					await _categoryService.DeleteCategory(category.Id);
+					return RedirectToAction("GetCategories", "CategoryProduct");
+				}
+				return View("Ошибка удаления");
+			}
+			return View("Ошибка удаления");
+		}
 
-    }
+	}
 }
