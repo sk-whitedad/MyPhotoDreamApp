@@ -1,9 +1,9 @@
 ﻿@model MyPhotoDreamApp.Domain.ViewModels.Product.ProductListViewModel
 
 @{
-	ViewData["Title"] = "Categories";
+	ViewData["Title"] = "Products";
 }
-<h1>Категории</h1>
+<h1>Продукты</h1>
 <hr />
 <div class="row">
 	<div class="col-md-4">
@@ -12,6 +12,7 @@
 				<tr>
 					<td>№</td>
 					<td>Наименование продукта</td>
+					<td>Цена</td>
 					<td>Описание</td>
 					<td>Категория</td>
 					<td></td>
@@ -29,6 +30,7 @@
 						<td>
 							<a asp-action="" asp-controller="Product" asp-route-Id="@item.Id">@item.Name</a>
 						</td>
+						<td>@item.Price</td>
 						<td>@item.Description</td>
 						<td>@item.Category.Name</td>
 						<td>
@@ -41,11 +43,13 @@
 			</tbody>
 		</table>
 
-		<form method="post" asp-action="" asp-controller="Product">
+		<form method="post" asp-action="AddNewProduct" asp-controller="Product">
 			<div asp-validation-summary="All"></div>
 			<p>
-				<input asp-for="@Model.NewName" placeholder="название продукта">
-				<input asp-for="@Model.NewDescription" placeholder="описание продукта">
+				<input asp-for="@Model.NewName" placeholder="название">
+				<input asp-for="@Model.NewDescription" placeholder="описание">
+				<input asp-for="@Model.Price" placeholder="цена">
+				<select name="SelectedItem" asp-items="@ViewBag.SelectItems"></select>
 
 				<input type="submit" value="Создать" />
 			</p>
