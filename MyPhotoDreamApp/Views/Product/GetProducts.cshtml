@@ -1,0 +1,55 @@
+﻿@model MyPhotoDreamApp.Domain.ViewModels.Product.ProductListViewModel
+
+@{
+	ViewData["Title"] = "Categories";
+}
+<h1>Категории</h1>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<table class="iksweb">
+			<thead>
+				<tr>
+					<td>№</td>
+					<td>Наименование продукта</td>
+					<td>Описание</td>
+					<td>Категория</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				@{
+					int i = 0;
+				}
+				@foreach (var item in Model.ProductList)
+				{
+					i++;
+					<tr>
+						<td>@i.ToString()</td>
+						<td>
+							<a asp-action="" asp-controller="Product" asp-route-Id="@item.Id">@item.Name</a>
+						</td>
+						<td>@item.Description</td>
+						<td>@item.Category.Name</td>
+						<td>
+							<form method="post" asp-route-Id="@item.Id" asp-action="" asp-controller="Product">
+								<input type="submit" value="Удалить" />
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<form method="post" asp-action="" asp-controller="Product">
+			<div asp-validation-summary="All"></div>
+			<p>
+				<input asp-for="@Model.NewName" placeholder="название продукта">
+				<input asp-for="@Model.NewDescription" placeholder="описание продукта">
+
+				<input type="submit" value="Создать" />
+			</p>
+		</form>
+
+	</div>
+</div>

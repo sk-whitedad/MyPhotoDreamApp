@@ -2,7 +2,7 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1600px) {
   html {
     font-size: 16px;
   }
@@ -35,7 +35,7 @@ table.iksweb {
         table.iksweb td, table.iksweb th {
             min-height: 35px;
             padding: 3px;
-            width: 60px;
+            width: 100px;
             height: 35px;
         }
 

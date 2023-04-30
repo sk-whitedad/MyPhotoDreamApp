@@ -70,7 +70,7 @@ namespace MyPhotoDreamApp.Service.Implementations
             {
                 return new BaseResponse<bool>()
                 {
-                    Description = $"[DeleteCar] : {ex.Message}",
+                    Description = $"[DeleteCategory] : {ex.Message}",
                     StatusCode = StatusCode.InternalServerError
                 };
             }
@@ -110,8 +110,8 @@ namespace MyPhotoDreamApp.Service.Implementations
             {
                 return new BaseResponse<CategoryProduct>()
                 {
-                    Description = ex.Message,
-                    StatusCode = StatusCode.InternalServerError
+					Description = $"[Edit] : {ex.Message}",
+					StatusCode = StatusCode.InternalServerError
                 };
 
             }
