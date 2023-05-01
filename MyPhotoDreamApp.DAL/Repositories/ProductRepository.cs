@@ -42,6 +42,7 @@ namespace MyPhotoDreamApp.DAL.Repositories
 			{
 				product.Name = entity.Name;
 				product.Description = entity.Description;
+				product.Price = entity.Price;
 				product.Category = entity.Category;
 				await _db.SaveChangesAsync();
 			}

@@ -19,7 +19,7 @@ namespace MyPhotoDreamApp.Service.Interfaces
 
 		Task<IBaseResponse<bool>> DeleteProducts(int id);
 
-		Task<IBaseResponse<Product>> Edit(int id, ProductListViewModel model);
+		Task<IBaseResponse<Product>> Edit(int id, Product model);
 
 		Task<IBaseResponse<Product>> GetProduct(int id);
 	}

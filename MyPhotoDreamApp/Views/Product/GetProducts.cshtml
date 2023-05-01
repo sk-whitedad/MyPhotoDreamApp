@@ -28,13 +28,13 @@
 					<tr>
 						<td>@i.ToString()</td>
 						<td>
-							<a asp-action="" asp-controller="Product" asp-route-Id="@item.Id">@item.Name</a>
+							<a asp-action="EditProduct" asp-controller="Product" asp-route-Id="@item.Id">@item.Name</a>
 						</td>
 						<td>@item.Price</td>
 						<td>@item.Description</td>
 						<td>@item.Category.Name</td>
 						<td>
-							<form method="post" asp-route-Id="@item.Id" asp-action="" asp-controller="Product">
+							<form method="post" asp-route-Id="@item.Id" asp-action="DellProduct" asp-controller="Product">
 								<input type="submit" value="Удалить" />
 							</form>
 						</td>

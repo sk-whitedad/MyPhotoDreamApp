@@ -77,7 +77,7 @@ namespace MyPhotoDreamApp.Service.Implementations
 			}
 		}
 
-		public async Task<IBaseResponse<Product>> Edit(int id, ProductListViewModel model)
+		public async Task<IBaseResponse<Product>> Edit(int id, Product model)
 		{
 			try
 			{
@@ -93,9 +93,10 @@ namespace MyPhotoDreamApp.Service.Implementations
 				Product _model = new Product()
 				{
 					Id = model.Id,
-					Name = model.NewName,
-					Description = model.NewDescription,
-					Category = model.NewCategory
+					Name = model.Name,
+					Price = model.Price,
+					Description = model.Description,
+					Category = model.Category
 				};
 				await _productRepository.Update(_model);
 				return new BaseResponse<Product>()

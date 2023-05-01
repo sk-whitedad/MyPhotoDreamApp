@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MyPhotoDreamApp.Domain.Entity;
+using MyPhotoDreamApp.Domain.ViewModels.Category;
 using MyPhotoDreamApp.Domain.ViewModels.Product;
 using MyPhotoDreamApp.Service.Interfaces;
 
@@ -68,5 +70,60 @@ namespace MyPhotoDreamApp.Controllers
 		}
 
 
-	}
+		[HttpGet]
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> EditProduct(int id)
+		{
+			var responseCategory = _categoryProductService.GetCategories();
+			var responseProducts = _productService.GetProducts();
+			var responseProduct = await _productService.GetProduct(id);
+
+			if (responseProducts.StatusCode == Domain.Enum.StatusCode.OK && responseCategory.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				List<string> sourse = new List<string>();
+				foreach (var item in responseCategory.Data)
+				{
+					sourse.Add(item.Name);
+				}
+				SelectList selectList = new SelectList(sourse, responseProduct.Data.Category.Name);
+				ViewBag.SelectItems = selectList;
+				return View(responseProduct.Data);
+
+			}
+			return RedirectToAction("GetProducts", "Product");
+		}
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditProduct(int id, Product product, string SelectedItem)
+        {
+            var responseProduct = await _productService.GetProduct(id);
+            var responseCategory = _categoryProductService.GetCategories();
+
+            if (responseProduct.StatusCode == Domain.Enum.StatusCode.OK && responseCategory.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                var category = responseCategory.Data.FirstOrDefault(x => x.Name == SelectedItem);
+				product.Id = id;
+				product.Category = category;
+				
+				await _productService.Edit(id, product);
+                return RedirectToAction("GetProducts", "Product");
+            }
+
+            return View("Ошибка записи");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DellProduct(int id)
+        {
+            var response = await _productService.GetProduct(id);
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                    await _productService.DeleteProducts(response.Data.Id);
+                    return RedirectToAction("GetProducts", "Product");
+            }
+            return View("Ошибка удаления");
+        }
+    }
 }
