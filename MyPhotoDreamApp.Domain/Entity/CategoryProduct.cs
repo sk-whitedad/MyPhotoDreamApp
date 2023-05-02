@@ -16,6 +16,7 @@ namespace MyPhotoDreamApp.Domain.Entity
 
         [Display(Name = "Описание")]
         public string? Description { get; set; }
+
         public List<Product> Products { get; set; } = new List<Product>();
     }
 }

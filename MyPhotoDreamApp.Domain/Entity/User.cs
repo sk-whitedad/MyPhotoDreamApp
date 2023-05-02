@@ -16,5 +16,7 @@ namespace MyPhotoDreamApp.Domain.Entity
         public string Password { get; set; }
         
         public Role Role { get; set; }
+
+        public Basket Basket { get; set; }
     }
 }

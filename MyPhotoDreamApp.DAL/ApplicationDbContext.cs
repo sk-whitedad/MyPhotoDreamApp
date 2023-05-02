@@ -11,7 +11,10 @@ namespace MyPhotoDreamApp.DAL
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<CategoryProduct> CategoryProducts { get; set; }
+		public DbSet<Basket> Baskets { get; set; }
+		public DbSet<Order> Orders { get; set; }
+
+		public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -37,19 +40,51 @@ namespace MyPhotoDreamApp.DAL
                 builder.Property(x => x.Role).IsRequired();
             });
 
-            modelBuilder.Entity<CategoryProduct>(builder =>
-            {
-                builder.ToTable("CategoryProducts").HasKey(x => x.Id);
-                builder.HasData(
-                    new CategoryProduct
-                    {
-                        Id = 1,
-                        Name = "Печать фото",
-                    });
-                builder.Property(x => x.Id).ValueGeneratedOnAdd();
-                builder.Property(x => x.Name).IsRequired();
-            });
+			modelBuilder.Entity<CategoryProduct>(builder =>
+			{
+				builder.ToTable("CategoryProducts").HasKey(x => x.Id);
+				builder.HasData(
+					new CategoryProduct
+					{
+						Id = 1,
+						Name = "Печать фото",
+					});
+				builder.Property(x => x.Id).ValueGeneratedOnAdd();
+				builder.Property(x => x.Name).IsRequired();
+			});
 
-        }
-    }
+			modelBuilder.Entity<Basket>(builder =>
+			{
+				builder.ToTable("Baskets").HasKey(x => x.Id);
+				builder.HasData(
+					new Basket
+					{
+						Id = 1,
+						UserId = 1,
+					});
+				builder.Property(x => x.Id).ValueGeneratedOnAdd();
+				builder.Property(x => x.UserId).IsRequired();
+			}); 
+			
+			modelBuilder.Entity<Order>(builder =>
+			{
+				builder.ToTable("Orders").HasKey(x => x.Id);
+				builder.HasData(
+					new Order
+					{
+						Id = 1,
+						BasketId = 1,
+						ProductId = 1,
+						Quantity = 10,
+						DateCreated = DateTime.Now,
+						Address = "адрес",
+						LastName = "фамилия",
+						FirstName = "имя"
+					});
+				builder.Property(x => x.Id).ValueGeneratedOnAdd();
+				builder.Property(x => x.BasketId).IsRequired();
+			});
+
+		}
+	}
 }

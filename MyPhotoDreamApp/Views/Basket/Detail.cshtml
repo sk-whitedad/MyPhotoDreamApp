@@ -1,0 +1,50 @@
+﻿@model List<MyPhotoDreamApp.Domain.ViewModels.Order.OrderViewModel>
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Корзина</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<table class="iksweb">
+			<thead>
+				<tr>
+					<td>№</td>
+					<td>Наименование</td>
+					<td>Цена</td>
+					<td>Количество</td>
+					<td>Сумма</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				@{
+					int i = 0;
+				}
+				@foreach (var item in Model)
+				{
+					i++;
+					<tr>
+						<td>@i.ToString()</td>
+						<td>
+							<a asp-action="" asp-controller="" asp-route-Id="@item.Id">@item.ProductName</a>
+						</td>
+						<td>@item.Price</td>
+						<td>@item.Quantity</td>
+						var summ = item.Price * item.Quantity;
+						<td>summ</td>
+						<td>
+							<form method="post" asp-route-Id="@item.Id" asp-action="" asp-controller="">
+								<input type="submit" value="Удалить" />
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+
+	</div>
+</div>

@@ -1,7 +1,40 @@
-﻿@{
+﻿@model MyPhotoDreamApp.Domain.ViewModels.Home.ProductListViewModel
+
+@{
     ViewData["Title"] = "Home";
 }
 
-<div>
-    <h1>Главная страница</h1>
+<div class="container">
+    <h1>Список сервисов</h1>
+    <div class="cards">
+        @foreach(var item in Model.Products)
+        {
+            <div class="card">
+                <!-- Верхняя часть -->
+                <div class="card__top">
+                    <!-- Изображение-ссылка товара -->
+                    <a href="#" class="card__image">
+                        <img src=""
+                             alt="@item.Name" />
+                    </a>
+                    <!-- Скидка на товар -->
+                    <div class="card__label">-10%</div>
+                </div>
+                <!-- Нижняя часть -->
+                <div class="card__bottom">
+                    <!-- Цены на товар (с учетом скидки и без)-->
+                    <div class="card__prices">
+                        <!--<div class="card__price card__price--discount">10</div>-->
+                        <div class="card__price card__price--common">@item.Price</div>
+                    </div>
+                    <!-- Ссылка-название товара -->
+                    <a href="#" class="card__title">@item.Name</a>
+                    <!-- Кнопка добавить в корзину -->
+                    <button class="card__add">В корзину</button>
+                </div>
+            </div>
+        }
+ 
+ 
+    </div>
 </div>
