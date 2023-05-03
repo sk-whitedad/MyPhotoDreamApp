@@ -1,0 +1,56 @@
+﻿@model MyPhotoDreamApp.Domain.Entity.Product
+@{
+    ViewData["Title"] = "CreateOrder";
+    if (String.IsNullOrEmpty(Model.Category.Name))
+    {
+        Model.Category.Name = "null";
+    }
+}
+
+<div class="container">
+    <h1>Загрузка фотографий для заказа</h1>
+    <h3>@Model.Name</h3>
+
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form">
+                <form method="post" asp-action="CreateOrder" asp-controller="Order" enctype="multipart/form-data">
+                    <p>
+                        <label class="card__price card__price--discount">@Model.Price</label>
+                    </p>
+                    <p>
+                        <label>Категория: @Model.Category.Name"</label>
+                    </p>
+                    <p>
+                        <label>Описание: @Model.Description</label>
+                    </p>
+                    <p>
+                        <input type="file" name="uploads" accept="image/jpeg,image/png" multiple /><br>
+                        
+                    </p>
+                     <p>
+                        <input type="button" onclick="history.back(-2); return false;" value="Назад" />
+                        <input type="submit" value="Загрузить" />
+                    </p>
+
+                </form>
+
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                        <script>
+
+    $("body").change(function () {
+        alert($(":file").length);
+        $("#total").html($("input[type=file]").length);
+    });
+
+
+                        </script>

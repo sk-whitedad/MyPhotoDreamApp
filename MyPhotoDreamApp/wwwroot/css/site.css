@@ -45,12 +45,15 @@ table.iksweb {
             font-weight: normal;
         }
 
+footer {
+    margin-top: 100px;
+    
+}
 
 
 
 
-
-        /*карточки товаров*/
+/*карточки товаров*/
 
 .cards {
     display: grid;
@@ -69,7 +72,7 @@ table.iksweb {
 
 .card {
     width: 225px;
-    min-height: 350px;
+    min-height: 225px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column; /* Размещаем элементы в колонку */
@@ -84,7 +87,7 @@ table.iksweb {
     }
 
 .card__top {
-    flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
+    flex: 0 0 130px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
     position: relative;
     overflow: hidden; /* Скрываем, что выходит за пределы */
 }
@@ -146,16 +149,16 @@ table.iksweb {
 .card__price--discount {
     font-weight: 700;
     font-size: 19px;
-    color: #414141;
+    color: #262626;
     display: flex;
     flex-wrap: wrap-reverse;
 }
 
     .card__price--discount::before {
-        content: "Со скидкой";
+        content: "Цена за 1шт.";
         font-weight: 400;
-        font-size: 13px;
-        color: #bfbfbf;
+        font-size: 15px;
+        color: #262626;
     }
 
 .card__price--common {

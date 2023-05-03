@@ -10,31 +10,27 @@
         @foreach(var item in Model.Products)
         {
             <div class="card">
-                <!-- Верхняя часть -->
-                <div class="card__top">
-                    <!-- Изображение-ссылка товара -->
-                    <a href="#" class="card__image">
-                        <img src=""
-                             alt="@item.Name" />
-                    </a>
-                    <!-- Скидка на товар -->
-                    <div class="card__label">-10%</div>
-                </div>
-                <!-- Нижняя часть -->
                 <div class="card__bottom">
+                    <!-- Ссылка-название товара -->
+                    <a href="#" class="card__title">@item.Name</a>
                     <!-- Цены на товар (с учетом скидки и без)-->
                     <div class="card__prices">
                         <!--<div class="card__price card__price--discount">10</div>-->
-                        <div class="card__price card__price--common">@item.Price</div>
+                        <div class="card__price card__price--discount">@item.Price</div>
                     </div>
-                    <!-- Ссылка-название товара -->
-                    <a href="#" class="card__title">@item.Name</a>
+
                     <!-- Кнопка добавить в корзину -->
-                    <button class="card__add">В корзину</button>
+                    <form method="get" asp-controller="Order" asp-action="CreateOrder" asp-route-Id="@item.Id">
+                        <input type="submit" class="card__add"  value="В корзину" />
+                    </form>
+  
+     
                 </div>
             </div>
+
         }
  
  
     </div>
 </div>
+

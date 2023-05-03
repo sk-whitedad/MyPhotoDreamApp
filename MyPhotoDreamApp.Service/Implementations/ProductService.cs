@@ -119,7 +119,9 @@ namespace MyPhotoDreamApp.Service.Implementations
 		{
 			try
 			{
-				var product = await _productRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
+				var product = await _productRepository.GetAll()
+                    .Include(x => x.Category)
+					.FirstOrDefaultAsync(x => x.Id == id);
 				if (product == null)
 				{
 					return new BaseResponse<Product>()

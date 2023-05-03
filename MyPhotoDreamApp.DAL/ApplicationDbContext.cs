@@ -68,19 +68,6 @@ namespace MyPhotoDreamApp.DAL
 			
 			modelBuilder.Entity<Order>(builder =>
 			{
-				builder.ToTable("Orders").HasKey(x => x.Id);
-				builder.HasData(
-					new Order
-					{
-						Id = 1,
-						BasketId = 1,
-						ProductId = 1,
-						Quantity = 10,
-						DateCreated = DateTime.Now,
-						Address = "адрес",
-						LastName = "фамилия",
-						FirstName = "имя"
-					});
 				builder.Property(x => x.Id).ValueGeneratedOnAdd();
 				builder.Property(x => x.BasketId).IsRequired();
 			});

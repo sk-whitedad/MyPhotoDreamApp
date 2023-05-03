@@ -33,7 +33,6 @@ namespace MyPhotoDreamApp.Controllers
             return View("Ошибка загрузки");
         }
 
-
         public IActionResult Contacts()
         {
             return View();
