@@ -1,56 +1,109 @@
 ﻿@model MyPhotoDreamApp.Domain.Entity.Product
 @{
     ViewData["Title"] = "CreateOrder";
-    if (String.IsNullOrEmpty(Model.Category.Name))
-    {
-        Model.Category.Name = "null";
-    }
-}
+ }
+ <style>
+    #btnLoad {
+        visibility: hidden;
+     }
+ </style>
+
 
 <div class="container">
     <h1>Загрузка фотографий для заказа</h1>
     <h3>@Model.Name</h3>
-
-
+    <h4>
+        <label class="card__price card__price--discount">@Model.Price</label>
+    </h4>
+    <h4>
+        <label>Категория: @Model.Category.Name</label>
+    </h4>
+    <h5>
+        <label>Описание: @Model.Description</label>
+    </h5>
+ 
     <hr />
     <div class="row">
         <div class="col-md-4">
             <div class="form">
-                <form method="post" asp-action="CreateOrder" asp-controller="Order" enctype="multipart/form-data">
+                <form method="post" asp-action="CreateOrder" name="idInputs" asp-controller="Order" enctype="multipart/form-data">
+                    <div id="placehere"></div>
                     <p>
-                        <label class="card__price card__price--discount">@Model.Price</label>
+                        <input id="inptFile" onchange="showFile(this)" type="file" name="uploads" accept="image/jpeg,image/png" multiple /><br>
                     </p>
                     <p>
-                        <label>Категория: @Model.Category.Name"</label>
-                    </p>
-                    <p>
-                        <label>Описание: @Model.Description</label>
-                    </p>
-                    <p>
-                        <input type="file" name="uploads" accept="image/jpeg,image/png" multiple /><br>
-                        
-                    </p>
-                     <p>
                         <input type="button" onclick="history.back(-2); return false;" value="Назад" />
-                        <input type="submit" value="Загрузить" />
+                        <input id="btnLoad" type="submit" value="Отправить в корзину" />
                     </p>
-
                 </form>
-
-
-                
             </div>
         </div>
     </div>
 
 </div>
 
-                        <script>
+    <script>
+        function showFile(input) {
+            var body = document.getElementById("placehere");
+            var tbl = document.createElement("table");
+            var tblBody = document.createElement("tbody");
+            for (let i = 0; i < input.files.length; i++) {
+                // создание строки таблицы
+                var row = document.createElement("tr");
+                for (var k = 0; k < 2; k++) {
+                    var cell = document.createElement("td");
+                    //картинка
+                    if (k == 0) {
+                        var file = input.files[i];
+                        var image = document.createElement("img");
+                        image.setAttribute("src", URL.createObjectURL(file));
+                        image.width = "200";
+                        cell.appendChild(image);
+                        row.appendChild(cell);
+                    }
+                    //картинка
 
-    $("body").change(function () {
-        alert($(":file").length);
-        $("#total").html($("input[type=file]").length);
-    });
+                    //текст
+                    if (k == 1) {
+                        var file = input.files[i];
 
+                        var inpt1 = document.createElement("input");
+                        inpt1.setAttribute("id", ("id_" + i));
+                        inpt1.setAttribute("min", "0");
+                        inpt1.setAttribute("max", "50");
+                        inpt1.setAttribute("value", "1");
+                        inpt1.setAttribute("type", "number");
+                        inpt1.setAttribute("name", "idInputs");
 
-                        </script>
+                        var p1 = document.createElement("p");
+                        p1.innerText = "Имя файла:";
+
+                        var p2 = document.createElement("p");
+                        p2.innerText = file.name;
+
+                        var p3 = document.createElement("p");
+                        p3.innerText = "Количество";
+
+                        cell.appendChild(p1);
+                        cell.appendChild(p2);
+                        cell.appendChild(p3);
+                        cell.appendChild(inpt1);
+                        console.log(cell);
+
+                        row.appendChild(cell);
+                        cell.setAttribute("valign", "top");
+                        console.log(cell);
+                    }
+                    //текст
+                }
+                tblBody.appendChild(row);
+                tbl.appendChild(tblBody);
+                body.appendChild(tbl);
+                tbl.setAttribute("border", "0");
+            }
+        var inptfile = document.getElementById("inptFile");
+        inptfile.style.visibility = "hidden";
+        var btnLoad = document.getElementById("btnLoad");
+        btnLoad.style.visibility = "visible";
+        }
+    </script>

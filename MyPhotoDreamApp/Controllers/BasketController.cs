@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyPhotoDreamApp.Service.Interfaces;
 using System.Security.Claims;
 
 namespace MyPhotoDreamApp.Controllers
 {
+	[Authorize]
 	public class BasketController : Controller
 	{
 		private readonly IBasketService _basketService;

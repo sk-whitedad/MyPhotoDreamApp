@@ -24,7 +24,7 @@ namespace MyPhotoDreamApp.Service.Implementations
             _orderRepository = orderRepository;
         }
 
-        public async Task<IBaseResponse<Order>> Create(CreateOrderViewModel model)
+        public async Task<IBaseResponse<Order>> Create(Order model)
         {
             try
             {
@@ -42,13 +42,13 @@ namespace MyPhotoDreamApp.Service.Implementations
 
                 var order = new Order()
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Address = model.Address,
-                    DateCreated = DateTime.Now,
-                    BasketId = user.Basket.Id,
-                    ProductId = model.ProductId,
+                    Name = model.Name,
+                    PhoneNumber = model.PhoneNumber,
+                    DateCreated = model.DateCreated,
                     Quantity = model.Quantity,
+                    Price = model.Price,
+                    Basket = user.Basket,
+                    ProductId = model.ProductId,
                 };
 
                 await _orderRepository.Create(order);
@@ -96,6 +96,37 @@ namespace MyPhotoDreamApp.Service.Implementations
             catch (Exception ex)
             {
                 return new BaseResponse<bool>()
+                {
+                    Description = ex.Message,
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
+        public async Task<IBaseResponse<int>> GetCount()
+        {
+            try
+            {
+                var orders = _orderRepository.GetAll();
+                if (orders == null)
+                {
+                    return new BaseResponse<int>()
+                    {
+                        StatusCode = StatusCode.OrderNotFound,
+                        Description = "Заказы не найдены"
+                    };
+                }
+                return new BaseResponse<int>()
+                {
+                    Data = orders.Count(),
+                    Description = "Количество получено",
+                    StatusCode = StatusCode.OK
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<int>()
                 {
                     Description = ex.Message,
                     StatusCode = StatusCode.InternalServerError

@@ -12,5 +12,6 @@ namespace MyPhotoDreamApp.Domain.ViewModels.Order
     {
         public MyPhotoDreamApp.Domain.Entity.Product Product { get; set; }
         public IFormFileCollection uploads { get; set; }
+        public List<int> idInputs { get; set; } = new List<int>();
     }
 }

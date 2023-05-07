@@ -11,8 +11,10 @@ namespace MyPhotoDreamApp.Service.Interfaces
 {
     public interface IOrderService
     {
-        Task<IBaseResponse<Order>> Create(CreateOrderViewModel model);
+        Task<IBaseResponse<Order>> Create(Order model);
 
         Task<IBaseResponse<bool>> Delete(int id);
+
+        Task<IBaseResponse<int>> GetCount();
     }
 }

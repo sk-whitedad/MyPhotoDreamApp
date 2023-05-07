@@ -32,9 +32,10 @@ namespace MyPhotoDreamApp.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public Task Create(Basket entity)
+        public async Task Create(Basket entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.Baskets.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -10,17 +10,17 @@ namespace MyPhotoDreamApp.Domain.Entity
 	{
 		public int Id { get; set; }
 
-		public DateTime DateCreated { get; set; }
+		public string Name { get; set; }
 
-        public int Quantity { get; set; }
+		public string PhoneNumber { get; set; }
+ 
+		public int Quantity { get; set; }
 
-        public string FirstName { get; set; }
+		public decimal Price { get; set; }
 
-		public string LastName { get; set; }
+        public DateTime DateCreated { get; set; }
 
-        public string Address { get; set; }
-
-		public int? ProductId { get; set; }
+        public int? ProductId { get; set; }
 
 		public int? BasketId { get; set; }
 

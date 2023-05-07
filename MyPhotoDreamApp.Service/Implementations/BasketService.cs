@@ -12,21 +12,28 @@ namespace MyPhotoDreamApp.Service.Implementations
     {
         private readonly IBaseRepository<User> _userRepository;
         private readonly IBaseRepository<Product> _productRepository;
+        private readonly IBaseRepository<CategoryProduct> _categoryProductRepository;
 
-        public BasketService(IBaseRepository<User> userRepository, IBaseRepository<Product> productRepository)
+        public BasketService(IBaseRepository<User> userRepository, IBaseRepository<Product> productRepository, IBaseRepository<CategoryProduct> categoryRepository)
         {
             _userRepository = userRepository;
             _productRepository = productRepository;
+            _categoryProductRepository = categoryRepository;
         }
 
         public async Task<IBaseResponse<IEnumerable<OrderViewModel>>> GetItems(string phoneNumber)
         {
             try
             {
+                var products = _productRepository.GetAll()
+                    .Include(p => p.Category)
+                    .ToList();
+                var catedories = _categoryProductRepository.GetAll().ToList();
                 var user = await _userRepository.GetAll()
                 .Include(x => x.Basket)
                 .ThenInclude(x => x.Orders)
                 .FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber);
+
 
                 if (user == null)
                 {
@@ -38,14 +45,18 @@ namespace MyPhotoDreamApp.Service.Implementations
                 }
 
                 var orders = user.Basket?.Orders;
+
                 var response = from p in orders
                                join c in _productRepository.GetAll() on p.ProductId equals c.Id
                                select new OrderViewModel()
                                {
                                    Id = p.Id,
-                                   ProductName = c.Name,
+                                   Name = c.Name,
                                    CategoryName = c.Category.Name,
                                    Price = c.Price,
+                                   Quantity = p.Quantity,
+                                   DateCreated = p.DateCreated.ToLongDateString(),
+                                   ProductName = c.Name
                                };
 
                 return new BaseResponse<IEnumerable<OrderViewModel>>()
@@ -100,10 +111,7 @@ namespace MyPhotoDreamApp.Service.Implementations
                                     ProductName = c.Name,
                                     CategoryName = c.Category.Name,
                                     Price = c.Price,
-                                    Address = p.Address,
-                                    FirstName = p.FirstName,
-                                    LastName = p.LastName,
-                                    DateCreate = p.DateCreated.ToLongDateString()
+                                    DateCreated = p.DateCreated.ToLongDateString(),
                                 }).FirstOrDefault();
 
                 return new BaseResponse<OrderViewModel>()

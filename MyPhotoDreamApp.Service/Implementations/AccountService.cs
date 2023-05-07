@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyPhotoDreamApp.DAL.Interfaces;
+using MyPhotoDreamApp.DAL.Repositories;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.Enum;
 using MyPhotoDreamApp.Domain.Helpers;
@@ -13,10 +14,12 @@ namespace MyPhotoDreamApp.Service.Implementations
     public class AccountService : IAccountService
     {
         private readonly IBaseRepository<User> _userRepository;
+        private readonly IBaseRepository<Basket> _basketRepository;
 
-        public AccountService(IBaseRepository<User> userRepository)
+        public AccountService(IBaseRepository<User> userRepository, IBaseRepository<Basket> basketRepository)
         {
             _userRepository = userRepository;
+            _basketRepository = basketRepository;
         }
 
         public async Task<BaseResponse<ClaimsIdentity>> Login(LoginViewModel model)
@@ -79,6 +82,13 @@ namespace MyPhotoDreamApp.Service.Implementations
                 };
 
                 await _userRepository.Create(user);
+
+                var basket = new Basket()//создаем корзину для нового юзера
+                {
+                    UserId = user.Id
+                };
+                await _basketRepository.Create(basket);
+
                 var result = Authenticate(user);
 
                 return new BaseResponse<ClaimsIdentity>()
