@@ -36,7 +36,7 @@
 						@{var summ = item.Price * item.Quantity;}
 						<td>@summ</td>
 						<td>
-							<form method="post" asp-route-Id="@item.Id" asp-action="" asp-controller="">
+							<form method="post" asp-route-Id="@item.Id" asp-action="DelOrder" asp-controller="Order">
 								<input type="submit" value="Удалить" />
 							</form>
 						</td>

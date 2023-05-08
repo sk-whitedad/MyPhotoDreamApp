@@ -16,5 +16,9 @@ namespace MyPhotoDreamApp.Service.Interfaces
         Task<IBaseResponse<bool>> Delete(int id);
 
         Task<IBaseResponse<int>> GetCount();
-    }
+
+        IBaseResponse<bool> RemoveFolderOrder(string orderName);
+
+        IBaseResponse<Order> GetOrder(int id);
+	}
 }

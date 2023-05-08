@@ -5,8 +5,10 @@ using Microsoft.Extensions.FileProviders;
 using MyPhotoDreamApp.DAL.Repositories;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.ViewModels.Order;
+using MyPhotoDreamApp.Models;
 using MyPhotoDreamApp.Service.Interfaces;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Web.Helpers;
 
 namespace MyPhotoDreamApp.Controllers
@@ -47,7 +49,6 @@ namespace MyPhotoDreamApp.Controllers
                 string numberOrder = $"order_{responseOrder.Data}_{responseProduct.Data.Name}";
                 var uploadPath = $"{Directory.GetCurrentDirectory()}/uploads";
                 // создаем папку для хранения файлов
-                Directory.CreateDirectory(uploadPath);
                 uploadPath = $"{uploadPath}/{numberOrder}";
                 Directory.CreateDirectory(uploadPath);
                 int i = 0;
@@ -81,11 +82,37 @@ namespace MyPhotoDreamApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
- 
+		[HttpPost]
+        [Authorize]
+		public async Task<IActionResult> DelOrder(int id)
+		{
+            var orderResponse = _orderService.GetOrder(id);
+            if (orderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+				var responseDelBdOrder = await _orderService.Delete(id);//удаление заказа из БД
+                if (responseDelBdOrder.StatusCode == Domain.Enum.StatusCode.OK)
+                {
+					_orderService.RemoveFolderOrder(orderResponse.Data.Name);//удаление заказа из папки
+					return RedirectToAction("Detail", "Basket");
+				}
+			}
+            
+			return RedirectToAction("Error");
+		}
 
-    }
 
 
 
-    
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+
+	}
+
+
+
+
 }

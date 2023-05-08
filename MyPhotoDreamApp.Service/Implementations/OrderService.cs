@@ -73,14 +73,13 @@ namespace MyPhotoDreamApp.Service.Implementations
         {
             try
             {
-                var order = _orderRepository.GetAll()
-                     .Select(x => x.Basket.Orders.FirstOrDefault(y => y.Id == id))
-                     .FirstOrDefault();
+                var order = _orderRepository.GetAll().FirstOrDefault(x => x.Id == id);
 
                 if (order == null)
                 {
                     return new BaseResponse<bool>()
                     {
+                        Data = false,
                         StatusCode = StatusCode.OrderNotFound,
                         Description = "Заказ не найден"
                     };
@@ -89,6 +88,7 @@ namespace MyPhotoDreamApp.Service.Implementations
                 await _orderRepository.Delete(order);
                 return new BaseResponse<bool>()
                 {
+                    Data = true,
                     StatusCode = StatusCode.OK,
                     Description = "Заказ удален"
                 };
@@ -97,6 +97,7 @@ namespace MyPhotoDreamApp.Service.Implementations
             {
                 return new BaseResponse<bool>()
                 {
+                    Data = false,
                     Description = ex.Message,
                     StatusCode = StatusCode.InternalServerError
                 };
@@ -133,5 +134,71 @@ namespace MyPhotoDreamApp.Service.Implementations
                 };
             }
         }
-    }
+
+		public IBaseResponse<Order> GetOrder(int id)
+        {
+            try
+            {
+                var orders = _orderRepository.GetAll();
+                if (orders == null)
+                {
+                    return new BaseResponse<Order>()
+                    {
+                        StatusCode = StatusCode.OrderNotFound,
+                        Description = "Заказы не найдены"
+                    };
+ 				}
+				var order = orders.FirstOrDefault(x => x.Id == id);
+				return new BaseResponse<Order>()
+				{
+					Data = order,
+					Description = "Заказ получен",
+					StatusCode = StatusCode.OK
+				};
+			}
+            catch (Exception ex)
+            {
+				return new BaseResponse<Order>()
+				{
+					Description = ex.Message,
+					StatusCode = StatusCode.InternalServerError
+				};
+			}
+        }
+
+		public IBaseResponse<bool> RemoveFolderOrder(string orderName)
+		{
+			var uploadPath = $"{Directory.GetCurrentDirectory()}/uploads/{orderName}";
+
+            if (!Directory.Exists(uploadPath)) 
+            {
+				return new BaseResponse<bool>()
+				{
+                    Data = false,
+					StatusCode = StatusCode.OrderNotFound,
+					Description = "Каталог заказа не найден"
+				};
+			};
+
+			try 
+			{
+				Directory.Delete(uploadPath, true);
+				return new BaseResponse<bool>()
+				{
+                    Data = true,
+					Description = "Каталог заказа уделен",
+					StatusCode = StatusCode.OK
+				};
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<bool>()
+				{
+                    Data= false,
+					Description = ex.Message,
+					StatusCode = StatusCode.InternalServerError
+				};
+			}
+		}
+	}
 }
