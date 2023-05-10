@@ -22,6 +22,7 @@
 			<tbody>
 				@{
 					int i = 0;
+					decimal finalSumm = 0;
 				}
 				@foreach (var item in Model)
 				{
@@ -34,6 +35,7 @@
 						<td>@item.Price</td>
 						<td>@item.Quantity</td>
 						@{var summ = item.Price * item.Quantity;}
+						@{finalSumm += summ;}
 						<td>@summ</td>
 						<td>
 							<form method="post" asp-route-Id="@item.Id" asp-action="DelOrder" asp-controller="Order">
@@ -44,7 +46,12 @@
 				}
 			</tbody>
 		</table>
-
+			<form method="post" asp-route-Id="" asp-action="" asp-controller="">
+			<h4>Итого к оплате: @finalSumm ₽</h4>
+			<p><input type="submit" value="Оплатить" /></p>
+			<p><a asp-action="Index" asp-controller="Home">Вернуться к выбору услуг</a></p>
+			</form>
+		
 
 	</div>
 </div>

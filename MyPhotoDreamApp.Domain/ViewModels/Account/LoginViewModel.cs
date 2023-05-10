@@ -21,5 +21,7 @@ namespace MyPhotoDreamApp.Domain.ViewModels.Account
         [Required(ErrorMessage = "Укажите пароль")]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
-    }
+
+		public string? ReturnUrl { get; set; }//адрес с которого пришли на эту форму
+	}
 }

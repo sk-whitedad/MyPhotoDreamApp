@@ -7,8 +7,10 @@ using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.ViewModels.Order;
 using MyPhotoDreamApp.Models;
 using MyPhotoDreamApp.Service.Interfaces;
+using NuGet.Packaging.Signing;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Web.Helpers;
 
 namespace MyPhotoDreamApp.Controllers
@@ -54,9 +56,10 @@ namespace MyPhotoDreamApp.Controllers
                 int i = 0;
                 foreach (var file in uploads)
                 {
-                    // путь к папке uploads
+					// путь к папке uploads
                     i++;
-                    string untrustedFileName = Path.GetFileName($"{uploadPath}/{i}_{responseProduct.Data.Name}_{idInputs[i-1]}");
+					var extension = Path.GetExtension(file.FileName);//получаем расширение файла
+					string untrustedFileName = Path.GetFileName($"{uploadPath}/{i}_{responseProduct.Data.Name}_{idInputs[i-1]}{extension}");
                     string fullPath = $"{uploadPath}/{untrustedFileName}";
 
                     // сохраняем файл в папку uploads

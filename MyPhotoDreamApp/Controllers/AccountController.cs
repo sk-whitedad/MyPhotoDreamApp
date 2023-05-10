@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using MyPhotoDreamApp.Domain.ViewModels.Account;
 using MyPhotoDreamApp.Service.Interfaces;
@@ -27,11 +28,15 @@ namespace MyPhotoDreamApp.Controllers
 
 
         [HttpGet]
-        public IActionResult Login() => View();
+        public IActionResult Login(string returnUrl = "/Home/Index") 
+        {
+			return View(new LoginViewModel { ReturnUrl = returnUrl });
+		}
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+
             if (ModelState.IsValid)
             {
                 var response = await _accountService.Login(model);
@@ -40,7 +45,7 @@ namespace MyPhotoDreamApp.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(response.Data));
 
-                    return RedirectToAction("Index", "Home");
+                    return Redirect(returnUrl);
                 }
                 ModelState.AddModelError("", response.Description);
 
