@@ -1,0 +1,31 @@
+﻿@model MyPhotoDreamApp.Domain.ViewModels.Order.OrderViewModel
+@{
+    ViewData["Title"] = "EditOrder";
+}
+
+<h1>Редактирование заказа</h1>
+
+<hr />
+
+<h3>@Model.ProductName</h3>
+<h4>
+    <label>Цана: @Model.Price</label>
+</h4>
+<h4>
+    <label>Количество: @Model.Quantity</label>
+</h4>
+<h5>
+    <label>Категория: @Model.CategoryName</label>
+</h5>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div class="form">
+            <img src="/img/ImgOrdersPreview/1.jpg" width="200" />
+            <form method="post" name="" asp-controller="" enctype="multipart/form-data">
+            </form>
+        </div>
+    </div>
+</div>
+

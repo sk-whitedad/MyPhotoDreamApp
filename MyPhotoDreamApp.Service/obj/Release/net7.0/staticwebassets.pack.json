@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\CSharpProjects\\MyPhotoDreamApp\\MyPhotoDreamApp.Service\\obj\\Release\\net7.0\\scopedcss\\projectbundle\\MyPhotoDreamApp.Service.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MyPhotoDreamApp.Service.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\CSharpProjects\\MyPhotoDreamApp\\MyPhotoDreamApp.Service\\wwwroot\\background.png",
+      "PackagePath": "staticwebassets\\background.png"
+    },
+    {
+      "Id": "C:\\CSharpProjects\\MyPhotoDreamApp\\MyPhotoDreamApp.Service\\wwwroot\\exampleJsInterop.js",
+      "PackagePath": "staticwebassets\\exampleJsInterop.js"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.MyPhotoDreamApp.Service.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.build.MyPhotoDreamApp.Service.props",
+      "PackagePath": "build\\MyPhotoDreamApp.Service.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.MyPhotoDreamApp.Service.props",
+      "PackagePath": "buildMultiTargeting\\MyPhotoDreamApp.Service.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildTransitive.MyPhotoDreamApp.Service.props",
+      "PackagePath": "buildTransitive\\MyPhotoDreamApp.Service.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

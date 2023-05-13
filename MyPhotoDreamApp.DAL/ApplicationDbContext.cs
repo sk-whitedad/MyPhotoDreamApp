@@ -13,8 +13,8 @@ namespace MyPhotoDreamApp.DAL
         public DbSet<Product> Products { get; set; }
 		public DbSet<Basket> Baskets { get; set; }
 		public DbSet<Order> Orders { get; set; }
-
 		public DbSet<CategoryProduct> CategoryProducts { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

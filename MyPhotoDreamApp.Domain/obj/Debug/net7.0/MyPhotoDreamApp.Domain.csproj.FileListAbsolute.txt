@@ -21,3 +21,5 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhot
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\refint\MyPhotoDreamApp.Domain.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.pdb
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\ref\MyPhotoDreamApp.Domain.dll
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.runtimeconfig.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.genruntimeconfig.cache

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MyPhotoDreamApp.Service.props" />
+</Project>

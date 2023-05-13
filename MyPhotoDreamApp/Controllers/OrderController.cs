@@ -10,11 +10,13 @@ using MyPhotoDreamApp.Service.Interfaces;
 using NuGet.Packaging.Signing;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Web.Helpers;
 
 namespace MyPhotoDreamApp.Controllers
 {
+    [Authorize]
 	public class OrderController: Controller
 	{
         private readonly IProductService _productService;
@@ -29,7 +31,6 @@ namespace MyPhotoDreamApp.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult> CreateOrder(int id)
         {
             var response = await _productService.GetProduct(id);
@@ -41,7 +42,6 @@ namespace MyPhotoDreamApp.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult> CreateOrder(IFormFileCollection uploads, int id, List<int> idInputs)
         {
             var responseProduct = await _productService.GetProduct(id);
@@ -62,14 +62,37 @@ namespace MyPhotoDreamApp.Controllers
 					string untrustedFileName = Path.GetFileName($"{uploadPath}/{i}_{responseProduct.Data.Name}_{idInputs[i-1]}{extension}");
                     string fullPath = $"{uploadPath}/{untrustedFileName}";
 
+
+                    using(var image = Bitmap.FromStream(file.OpenReadStream()))
+                    {
+                        if (image != null)
+                        {
+                            Size s = image.Size;
+                            int w = s.Width;
+                            int h = s.Height;
+                            float k = w / 200;
+                            s.Width = 200;
+                            s.Height = 200;
+                            
+                            var uploadPath2 = $"{Directory.GetCurrentDirectory()}/wwwroot/img/ImgOrdersPreview";
+                            uploadPath2 = $"{uploadPath2}/{numberOrder}";
+                            string untrustedFileName2 = Path.GetFileName($"{uploadPath2}/{i}_{responseProduct.Data.Name}_{idInputs[i - 1]}{extension}");
+                            string fullPath2 = $"{uploadPath2}/{untrustedFileName2}";
+                            Bitmap newImage = new Bitmap(image, s);
+
+                            newImage.Save(fullPath2);
+                        }
+                    }
+                    
                     // сохраняем файл в папку uploads
                     using (var fileStream = new FileStream(fullPath, FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);
+ 
                     }
                 }
 
-                //формируем объект заказа 
+                //формируем объект заказа для БД
                 Order order = new Order()
                 {
                     Name = numberOrder,
@@ -86,8 +109,7 @@ namespace MyPhotoDreamApp.Controllers
         }
 
 		[HttpPost]
-        [Authorize]
-		public async Task<IActionResult> DelOrder(int id)
+ 		public async Task<IActionResult> DelOrder(int id)
 		{
             var orderResponse = _orderService.GetOrder(id);
             if (orderResponse.StatusCode == Domain.Enum.StatusCode.OK)
@@ -103,15 +125,40 @@ namespace MyPhotoDreamApp.Controllers
 			return RedirectToAction("Error");
 		}
 
+		
+		[HttpGet]
+		public async Task<IActionResult> Edit(int id)
+		{
+			var orderResponse = _orderService.GetOrder(id);
+            
+			if (orderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+                var productResponse = await _productService.GetProduct(orderResponse.Data.ProductId);
+                var categoryResponse = await _categoryProductService.GetCategory(productResponse.Data.CategoryProductId);
+                OrderViewModel orderViewModel = new OrderViewModel()
+                {
+                    Id = orderResponse.Data.Id,
+                    Name = orderResponse.Data.Name,
+                    Quantity = orderResponse.Data.Quantity,
+                    Price = orderResponse.Data.Price,
+                    DateCreated = orderResponse.Data.DateCreated.ToLongDateString(),
+                    ProductName = productResponse.Data.Name,
+                    CategoryName = categoryResponse.Data.Name
 
+                };
 
+                return View(orderViewModel);
+			}
 
+			return RedirectToAction("Error");
+		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+
 
 	}
 

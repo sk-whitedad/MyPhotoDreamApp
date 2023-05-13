@@ -30,7 +30,7 @@
 					<tr>
 						<td>@i.ToString()</td>
 						<td>
-							<a asp-action="" asp-controller="" asp-route-Id="@item.Id">@item.ProductName</a>
+							<a asp-action="Edit" asp-controller="Order" asp-route-Id="@item.Id">@item.ProductName</a>
 						</td>
 						<td>@item.Price</td>
 						<td>@item.Quantity</td>
@@ -46,7 +46,7 @@
 				}
 			</tbody>
 		</table>
-			<form method="post" asp-route-Id="" asp-action="" asp-controller="">
+			<form method="post" asp-route-Id="" asp-route-FinalSumm="@finalSumm" asp-action="" asp-controller="">
 			<h4>Итого к оплате: @finalSumm ₽</h4>
 			<p><input type="submit" value="Оплатить" /></p>
 			<p><a asp-action="Index" asp-controller="Home">Вернуться к выбору услуг</a></p>

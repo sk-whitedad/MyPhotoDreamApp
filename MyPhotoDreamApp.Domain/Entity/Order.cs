@@ -20,7 +20,7 @@ namespace MyPhotoDreamApp.Domain.Entity
 
         public DateTime DateCreated { get; set; }
 
-        public int? ProductId { get; set; }
+        public int ProductId { get; set; }
 
 		public int? BasketId { get; set; }
 

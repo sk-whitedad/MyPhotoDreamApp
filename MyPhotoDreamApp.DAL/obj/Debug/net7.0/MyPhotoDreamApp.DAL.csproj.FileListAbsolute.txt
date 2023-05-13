@@ -25,3 +25,5 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.DAL\obj\Debug\net7.0\MyPhotoDr
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.DAL\obj\Debug\net7.0\refint\MyPhotoDreamApp.DAL.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.DAL\obj\Debug\net7.0\MyPhotoDreamApp.DAL.pdb
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.DAL\obj\Debug\net7.0\ref\MyPhotoDreamApp.DAL.dll
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.DAL\bin\Debug\net7.0\MyPhotoDreamApp.DAL.runtimeconfig.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.DAL\obj\Debug\net7.0\MyPhotoDreamApp.DAL.genruntimeconfig.cache
