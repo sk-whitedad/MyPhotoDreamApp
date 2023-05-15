@@ -1,12 +1,14 @@
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.staticwebassets.runtime.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.deps.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.dll
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.pdb
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.csproj.AssemblyReference.cache
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.AssemblyInfoInputs.cache
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.AssemblyInfo.cs
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.csproj.CoreCompileInputs.cache
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\Properties\launchSettings.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.staticwebassets.runtime.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.deps.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.runtimeconfig.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.dll
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.pdb
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\staticwebassets\msbuild.MyPhotoDreamApp.Domain.Microsoft.AspNetCore.StaticWebAssets.props
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\staticwebassets\msbuild.build.MyPhotoDreamApp.Domain.props
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.MyPhotoDreamApp.Domain.props
@@ -20,6 +22,5 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\scoped
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\refint\MyPhotoDreamApp.Domain.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.pdb
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\ref\MyPhotoDreamApp.Domain.dll
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Debug\net7.0\MyPhotoDreamApp.Domain.runtimeconfig.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\MyPhotoDreamApp.Domain.genruntimeconfig.cache
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Debug\net7.0\ref\MyPhotoDreamApp.Domain.dll

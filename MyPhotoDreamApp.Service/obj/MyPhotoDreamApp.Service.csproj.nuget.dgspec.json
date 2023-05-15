@@ -127,9 +127,9 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
-            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
+            "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[5.0.17, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
