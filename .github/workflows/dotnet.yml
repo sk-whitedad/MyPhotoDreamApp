@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore -project MyPhotoDreamApp/MyPhotoDreamApp.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -project MyPhotoDreamApp/MyPhotoDreamApp.csproj
     - name: Dotnet Publish
-      run: dotnet publish -c Release -o deploy
+      run: dotnet publish -c Release -o deploy -project MyPhotoDreamApp/MyPhotoDreamApp.csproj
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@v0.5.3
       with:
