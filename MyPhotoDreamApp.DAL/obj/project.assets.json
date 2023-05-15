@@ -10,7 +10,7 @@
           }
         },
         "runtime": {
-          "lib/net6.0/Humanizer.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         }
@@ -197,12 +197,12 @@
           }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
         "build": {
-          "build/net6.0/Microsoft.EntityFrameworkCore.Design.props": {}
+          "build/net6.0/_._": {}
         }
       },
       "Microsoft.EntityFrameworkCore.Relational/7.0.5": {
@@ -477,7 +477,7 @@
           "lib/netstandard2.0/_._": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Mono.TextTemplating.dll": {}
+          "lib/netstandard2.0/_._": {}
         }
       },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.4": {
@@ -631,7 +631,7 @@
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.CodeDom.dll": {}
+          "lib/netstandard2.0/_._": {}
         }
       },
       "System.IO.Pipelines/7.0.0": {
@@ -707,7 +707,8 @@
           "Microsoft.AspNetCore.Components.Web": "7.0.5",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.5",
-          "Microsoft.EntityFrameworkCore.Sqlite": "7.0.5"
+          "Microsoft.EntityFrameworkCore.Sqlite": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.5"
         },
         "compile": {
           "bin/placeholder/MyPhotoDreamApp.Domain.dll": {}
@@ -1682,8 +1683,7 @@
             "version": "[7.0.5, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
+            "include": "None",
             "target": "Package",
             "version": "[7.0.5, )"
           }

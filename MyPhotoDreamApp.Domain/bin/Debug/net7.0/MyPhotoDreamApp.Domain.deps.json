@@ -18,14 +18,7 @@
           "MyPhotoDreamApp.Domain.dll": {}
         }
       },
-      "Humanizer.Core/2.14.1": {
-        "runtime": {
-          "lib/net6.0/Humanizer.dll": {
-            "assemblyVersion": "2.14.0.0",
-            "fileVersion": "2.14.1.48190"
-          }
-        }
-      },
+      "Humanizer.Core/2.14.1": {},
       "Microsoft.AspNetCore.Authorization/7.0.5": {
         "dependencies": {
           "Microsoft.AspNetCore.Metadata": "7.0.5",
@@ -139,12 +132,6 @@
           "Microsoft.EntityFrameworkCore.Relational": "7.0.5",
           "Microsoft.Extensions.DependencyModel": "7.0.0",
           "Mono.TextTemplating": "2.2.1"
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "7.0.5.0",
-            "fileVersion": "7.0.523.16503"
-          }
         }
       },
       "Microsoft.EntityFrameworkCore.Relational/7.0.5": {
@@ -304,12 +291,6 @@
       "Mono.TextTemplating/2.2.1": {
         "dependencies": {
           "System.CodeDom": "4.4.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Mono.TextTemplating.dll": {
-            "assemblyVersion": "2.2.0.0",
-            "fileVersion": "2.2.1.1"
-          }
         }
       },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.4": {
@@ -465,14 +446,7 @@
           }
         }
       },
-      "System.CodeDom/4.4.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.CodeDom.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.6.25519.3"
-          }
-        }
-      },
+      "System.CodeDom/4.4.0": {},
       "System.IO.Pipelines/7.0.0": {
         "runtime": {
           "lib/net7.0/System.IO.Pipelines.dll": {

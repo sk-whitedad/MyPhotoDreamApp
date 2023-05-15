@@ -10,7 +10,7 @@ using MyPhotoDreamApp.Models;
 using MyPhotoDreamApp.Service;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews();
 
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

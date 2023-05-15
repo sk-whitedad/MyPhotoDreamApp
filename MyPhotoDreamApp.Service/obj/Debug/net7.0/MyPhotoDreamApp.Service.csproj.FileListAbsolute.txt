@@ -6,7 +6,6 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\MyPho
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\Properties\launchSettings.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\MyPhotoDreamApp.Domain.staticwebassets.runtime.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\MyPhotoDreamApp.Service.deps.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\MyPhotoDreamApp.Service.runtimeconfig.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\MyPhotoDreamApp.Service.pdb
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Debug\net7.0\MyPhotoDreamApp.DAL.dll
@@ -17,5 +16,4 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\MyPho
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\refint\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\MyPhotoDreamApp.Service.pdb
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\MyPhotoDreamApp.Service.genruntimeconfig.cache
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Debug\net7.0\ref\MyPhotoDreamApp.Service.dll

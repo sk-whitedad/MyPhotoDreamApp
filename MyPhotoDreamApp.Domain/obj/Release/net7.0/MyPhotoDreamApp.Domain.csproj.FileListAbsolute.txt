@@ -23,3 +23,4 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Release\net7.0\MyPh
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Release\net7.0\ref\MyPhotoDreamApp.Domain.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Release\net7.0\MyPhotoDreamApp.Domain.runtimeconfig.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\obj\Release\net7.0\MyPhotoDreamApp.Domain.genruntimeconfig.cache
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Domain\bin\Release\net7.0\Properties\launchSettings.json

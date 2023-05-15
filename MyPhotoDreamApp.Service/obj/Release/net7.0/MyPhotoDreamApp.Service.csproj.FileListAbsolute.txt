@@ -1,6 +1,4 @@
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Domain.staticwebassets.runtime.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.DAL.staticwebassets.runtime.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Service.staticwebassets.runtime.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Service.deps.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Service.pdb
@@ -13,16 +11,6 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyP
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.AssemblyInfoInputs.cache
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.AssemblyInfo.cs
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.csproj.CoreCompileInputs.cache
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets\msbuild.MyPhotoDreamApp.Service.Microsoft.AspNetCore.StaticWebAssets.props
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets\msbuild.build.MyPhotoDreamApp.Service.props
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets\msbuild.buildMultiTargeting.MyPhotoDreamApp.Service.props
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets\msbuild.buildTransitive.MyPhotoDreamApp.Service.props
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets.pack.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets.build.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\staticwebassets.development.json
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\scopedcss\Component1.razor.rz.scp.css
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\scopedcss\bundle\MyPhotoDreamApp.Service.styles.css
-C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\scopedcss\projectbundle\MyPhotoDreamApp.Service.bundle.scp.css
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.csproj.CopyComplete
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\refint\MyPhotoDreamApp.Service.dll
@@ -30,3 +18,4 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyP
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\ref\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Service.runtimeconfig.json
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.genruntimeconfig.cache
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\Properties\launchSettings.json
