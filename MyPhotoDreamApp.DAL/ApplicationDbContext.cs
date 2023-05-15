@@ -18,7 +18,7 @@ namespace MyPhotoDreamApp.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();  // создаем базу данных при первом обращении
+            Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
