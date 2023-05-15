@@ -18,7 +18,7 @@ jobs:
         local: /home/runner/test
         remote: /home/www/
         host: 46.17.42.116
-        username: admin
+        username: root
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
     - name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.3.0
