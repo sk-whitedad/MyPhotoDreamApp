@@ -12,11 +12,12 @@
         <div class="form">
             <form asp-action="Login" asp-controller="Account" asp-route-returnUrl="@Model.ReturnUrl">
                 <div asp-validation-summary="All"></div>
+                    <label>Номер телефона без +7 и 8</label>
                 <p>
-                    <label>+7 </label><input asp-for="PhoneNumber" placeholder="номер телефона" value="1234567890">
+                    <input asp-for="PhoneNumber" placeholder="номер телефона" value="">
                 </p>
                 <p>
-                    <input asp-for="Password" placeholder="пароль" value="123456">
+                    <input asp-for="Password" placeholder="пароль" value="">
                 </p>
                 <p>
                     <input type="submit" value="Отправить" />

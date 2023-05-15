@@ -1,18 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
-using Microsoft.Extensions.FileProviders;
-using MyPhotoDreamApp.DAL.Repositories;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.ViewModels.Order;
 using MyPhotoDreamApp.Models;
 using MyPhotoDreamApp.Service.Interfaces;
-using NuGet.Packaging.Signing;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Web.Helpers;
 
 namespace MyPhotoDreamApp.Controllers
 {
@@ -63,26 +56,6 @@ namespace MyPhotoDreamApp.Controllers
                     string fullPath = $"{uploadPath}/{untrustedFileName}";
 
 
-                    using(var image = Bitmap.FromStream(file.OpenReadStream()))
-                    {
-                        if (image != null)
-                        {
-                            Size s = image.Size;
-                            int w = s.Width;
-                            int h = s.Height;
-                            float k = w / 200;
-                            s.Width = 200;
-                            s.Height = 200;
-                            
-                            var uploadPath2 = $"{Directory.GetCurrentDirectory()}/wwwroot/img/ImgOrdersPreview";
-                            uploadPath2 = $"{uploadPath2}/{numberOrder}";
-                            string untrustedFileName2 = Path.GetFileName($"{uploadPath2}/{i}_{responseProduct.Data.Name}_{idInputs[i - 1]}{extension}");
-                            string fullPath2 = $"{uploadPath2}/{untrustedFileName2}";
-                            Bitmap newImage = new Bitmap(image, s);
-
-                            newImage.Save(fullPath2);
-                        }
-                    }
                     
                     // сохраняем файл в папку uploads
                     using (var fileStream = new FileStream(fullPath, FileMode.Create))

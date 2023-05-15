@@ -13,10 +13,9 @@
         <div class="form">
             <form asp-action="Register" asp-controller="Account">
                 <div asp-validation-summary="All"></div>
+                <label>Номер телефона без +7 и 8</label>
                 <p>
-                    <label asp-for="PhoneNumber"></label><br />
                     <input asp-for="PhoneNumber" placeholder="номер телефона">
-
                 </p>
                 <p>
                     <label asp-for="Password"></label><br />

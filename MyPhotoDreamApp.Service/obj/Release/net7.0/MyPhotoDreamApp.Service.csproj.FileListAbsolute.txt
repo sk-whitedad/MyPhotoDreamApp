@@ -28,3 +28,5 @@ C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyP
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\refint\MyPhotoDreamApp.Service.dll
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.pdb
 C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\ref\MyPhotoDreamApp.Service.dll
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\bin\Release\net7.0\MyPhotoDreamApp.Service.runtimeconfig.json
+C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\obj\Release\net7.0\MyPhotoDreamApp.Service.genruntimeconfig.cache

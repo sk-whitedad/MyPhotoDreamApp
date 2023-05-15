@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MyPhotoDreamApp.Domain.Entity
 {
@@ -26,6 +27,10 @@ namespace MyPhotoDreamApp.Domain.Entity
 
 		public virtual Basket Basket { get; set; }
 
+        //public int ConfirmOrderId { get; set; }
 
-	}
+       // public ConfirmOrder ConfirmOrder { get; set; }
+
+
+    }
 }
