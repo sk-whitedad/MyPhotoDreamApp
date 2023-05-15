@@ -18,13 +18,13 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-    working-directory: ./MyPhotoDreamApp
+      working-directory: ./MyPhotoDreamApp
       run: dotnet restore
     - name: Build
-    working-directory: ./MyPhotoDreamApp
+      working-directory: ./MyPhotoDreamApp
       run: dotnet build --no-restore
     - name: Dotnet Publish
-    working-directory: ./MyPhotoDreamApp
+      working-directory: ./MyPhotoDreamApp
       run: dotnet publish -c Release -o deploy
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@v0.5.3
