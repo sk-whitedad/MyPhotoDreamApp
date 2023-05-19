@@ -34,6 +34,15 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
+        concurrency: 8
+        atomicPut: true
+    - name: Run SSH command
+      uses: garygrossgarten/github-action-ssh@v0.3.0
+      with:
+        command: sudo chown -R www:admin /home/www/
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        privateKey: ${{ secrets.REMOTE_SSH_KEY }}
     - name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.3.0
       with:
