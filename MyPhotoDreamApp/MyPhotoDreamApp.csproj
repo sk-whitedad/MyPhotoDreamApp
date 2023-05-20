@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="uploads\" />
     <Folder Include="wwwroot\img\ImgOrdersPreview\" />
+    <Folder Include="wwwroot\img\product\" />
   </ItemGroup>
 
 </Project>

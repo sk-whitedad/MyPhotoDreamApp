@@ -9,7 +9,9 @@
     <div class="cards">
         @foreach(var item in Model.Products)
         {
+            string imgName = $"product_{@item.Name}.jpg";
             <div class="card">
+ 
                 <div class="card__bottom">
                     <!-- Ссылка-название товара -->
                     <a href="#" class="card__title">@item.Name</a>
@@ -18,10 +20,16 @@
                         <!--<div class="card__price card__price--discount">10</div>-->
                         <div class="card__price card__price--discount">@item.Price</div>
                     </div>
+                    <div class="card__top">
+                        <!-- Изображение-ссылка товара -->
+                        <a href="#" class="card__image">
+                            <img src="/img/product/@imgName" />
+                        </a>
+                    </div>
 
                     <!-- Кнопка добавить в корзину -->
                     <form method="get" asp-controller="Order" asp-action="CreateOrder" asp-route-Id="@item.Id">
-                        <input type="submit" class="card__add"  value="В корзину" />
+                        <input type="submit" class="card__add"  value="Выбрать фото" />
                     </form>
   
      
