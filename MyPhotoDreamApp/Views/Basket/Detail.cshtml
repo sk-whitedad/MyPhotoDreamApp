@@ -30,7 +30,7 @@
 					<tr>
 						<td>@i.ToString()</td>
 						<td>
-							<a asp-action="Edit" asp-controller="Order" asp-route-Id="@item.Id">@item.ProductName</a>
+							<a asp-action="" asp-controller="Order" asp-route-Id="@item.Id">@item.ProductName</a>
 						</td>
 						<td>@item.Price</td>
 						<td>@item.Quantity</td>
@@ -49,7 +49,8 @@
 			<form method="post" asp-route-Id="" asp-route-FinalSumm="@finalSumm" asp-action="" asp-controller="">
 			<h4>Итого к оплате: @finalSumm ₽</h4>
 			<p><input type="submit" value="Подтвердить заказ" /></p>
-			<p><a asp-action="Index" asp-controller="Home">Вернуться к выбору услуг</a></p>
 			</form>
+		<p><a asp-action="Index" asp-controller="Home">Вернуться в каталог сервисов</a></p>
+
 	</div>
 </div>

@@ -27,10 +27,8 @@ namespace MyPhotoDreamApp.Domain.Entity
 
 		public virtual Basket Basket { get; set; }
 
-        //public int ConfirmOrderId { get; set; }
+		public int? ConfirmOrderId { get; set; }
 
-       // public ConfirmOrder ConfirmOrder { get; set; }
-
-
+		public ConfirmOrder? ConfirmOrder { get; set; }
     }
 }
