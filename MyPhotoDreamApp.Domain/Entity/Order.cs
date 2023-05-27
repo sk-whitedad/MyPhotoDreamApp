@@ -21,11 +21,13 @@ namespace MyPhotoDreamApp.Domain.Entity
 
         public DateTime DateCreated { get; set; }
 
+		public bool CheckConfirm { get; set; } = false;
+
         public int ProductId { get; set; }
 
 		public int? BasketId { get; set; }
 
-		public virtual Basket Basket { get; set; }
+		public virtual Basket? Basket { get; set; }
 
 		public int? ConfirmOrderId { get; set; }
 

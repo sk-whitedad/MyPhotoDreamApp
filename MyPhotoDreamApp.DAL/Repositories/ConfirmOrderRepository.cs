@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyPhotoDreamApp.DAL.Repositories
 {
-	internal class ConfirmOrderRepository : IBaseRepository<ConfirmOrder>
+	public class ConfirmOrderRepository : IBaseRepository<ConfirmOrder>
 	{
 		private readonly ApplicationDbContext _dbContext;
 

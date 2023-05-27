@@ -21,7 +21,8 @@ namespace MyPhotoDreamApp.Controllers
 			var responseOrder = await _basketService.GetItems(User.Identity.Name);
 			if (responseOrder.StatusCode == Domain.Enum.StatusCode.OK)
 			{
-				return View(responseOrder.Data.ToList());
+				var _responseOrder = responseOrder.Data.ToList().Where(x => x.CheckConfirm == false).ToList();
+				return View(_responseOrder);
 			}
 			return RedirectToAction("Index", "Home");
 		}

@@ -5,7 +5,7 @@ namespace MyPhotoDreamApp.Service.Interfaces
 {
 	public interface IConfirmOrderService
 	{
-		Task<IBaseResponse<ConfirmOrder>> Create(ConfirmOrder model);
+		Task<IBaseResponse<ConfirmOrder>> Create(ConfirmOrder model, string phoneNumber);
 
 		Task<IBaseResponse<bool>> Delete(int id);
 

@@ -14,7 +14,7 @@ namespace MyPhotoDreamApp.Domain.Entity
 		
 		public int UserId { get; set; }
 
-		public List<Order> Orders { get; set; }
+		public List<Order>? Orders { get; set; }
 
 	}
 }

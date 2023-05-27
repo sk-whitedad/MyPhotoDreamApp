@@ -56,8 +56,9 @@ namespace MyPhotoDreamApp.Service.Implementations
                                    Price = c.Price,
                                    Quantity = p.Quantity,
                                    DateCreated = p.DateCreated.ToLongDateString(),
-                                   ProductName = c.Name
-                               };
+                                   ProductName = c.Name,
+								   CheckConfirm = p.CheckConfirm
+							   };
 
                 return new BaseResponse<IEnumerable<OrderViewModel>>()
                 {
