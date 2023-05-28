@@ -136,6 +136,15 @@ namespace MyPhotoDreamApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateConfirmOrder(string phoneNumber, string finalSumm1, bool checkDelivery, string deliveryAddress)
         {
+            if (finalSumm1 == null)
+            {
+                return RedirectToAction("Index", "Home");
+			}
+
+            if (checkDelivery == false)
+            {
+                deliveryAddress = "";
+			}
  			var confirmOrder = new ConfirmOrder()
             {
 				SummOrder = Convert.ToDecimal(finalSumm1),

@@ -2,8 +2,11 @@
 @{
     ViewData["Title"] = "Detail";
 }
+@if (Model.Count > 0)
+{
+	<h1 class="header-text-top">Корзина</h1>
+} else {<h1 class="header-text-top">Корзина пуста</h1>}
 
-<h1 class="header-text-top">Корзина</h1>
 		
 
 <hr />
@@ -49,17 +52,33 @@
 				}
 			</tbody>
 		</table>
-		<form method="post" asp-route-PhoneNumber="@User.Identity.Name" asp-route-FinalSumm1="@finalSumm1" asp-action="CreateConfirmOrder" asp-controller="Order">
-			<h4>Итого к оплате: @finalSumm ₽</h4>
-			<div>
-				<p>
-					<input type="checkbox" name="checkDelivery" value="true"><br />
-					<input type="text" name="deliveryAddress" placeholder="адрес доставки">
-				</p>
-			</div>
-			<p><input type="submit" value="Подтвердить заказ" /></p>
+		@if (Model.Count > 0)
+		{
+			<form method="post" asp-route-PhoneNumber="@User.Identity.Name" asp-route-FinalSumm1="@finalSumm1" asp-action="CreateConfirmOrder" asp-controller="Order">
+				<h4>Итого к оплате: @finalSumm ₽</h4>
+				<div>
+					<p>
+						<input type="checkbox" name="checkDelivery" id="chk-1" ><label for="chk-1">Заказать доставку</label><br />
+
+						<textarea id="txtArea-1" name="deliveryAddress" placeholder="адрес доставки" ></textarea>
+					</p>
+				</div>
+				<p><input type="submit" value="Подтвердить заказ" /></p>
 			</form>
+		}
 		<p><a asp-action="Index" asp-controller="Home">Вернуться в каталог сервисов</a></p>
 
 	</div>
 </div>
+
+<!--
+<script>
+	chkInput = document.getElementById("chk-1").ariaChecked;
+	txtArea = document.getElementById("txtArea-1");
+	if (chkInput) {
+		txtArea.removeAttribute("disabled");
+	} else {
+		txtArea.setAttribute("disabled", true);
+	};
+</script>
+-->
