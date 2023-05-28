@@ -18,5 +18,7 @@ namespace MyPhotoDreamApp.Domain.Entity
         public Role Role { get; set; }
 
         public Basket Basket { get; set; }
+
+        public List<ConfirmOrder>? ConfirmOrders { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace MyPhotoDreamApp.DAL
 		public DbSet<Basket> Baskets { get; set; }
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<CategoryProduct> CategoryProducts { get; set; }
+		public DbSet<ConfirmOrder> ConfirmOrders { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -53,6 +54,7 @@ namespace MyPhotoDreamApp.DAL
 				builder.Property(x => x.Name).IsRequired();
 			});
 
+
 			modelBuilder.Entity<Basket>(builder =>
 			{
 				builder.ToTable("Baskets").HasKey(x => x.Id);
@@ -66,10 +68,18 @@ namespace MyPhotoDreamApp.DAL
 				builder.Property(x => x.UserId).IsRequired();
 			}); 
 			
+
 			modelBuilder.Entity<Order>(builder =>
 			{
 				builder.Property(x => x.Id).ValueGeneratedOnAdd();
 				builder.Property(x => x.BasketId).IsRequired();
+			});
+
+
+			modelBuilder.Entity<ConfirmOrder>(builder =>
+			{
+				builder.Property(x => x.Id).ValueGeneratedOnAdd();
+				builder.Property(x => x.UserId).IsRequired();
 			});
 
 		}

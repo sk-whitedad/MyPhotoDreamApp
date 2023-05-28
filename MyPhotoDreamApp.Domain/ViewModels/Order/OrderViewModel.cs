@@ -23,5 +23,6 @@ namespace MyPhotoDreamApp.Domain.ViewModels.Order
 
         public string ProductName { get; set; }
 
-    }
+		public bool CheckConfirm { get; set; }
+	}
 }

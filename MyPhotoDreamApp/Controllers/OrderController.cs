@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.CodeAnalysis;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.ViewModels.Order;
@@ -15,13 +16,18 @@ namespace MyPhotoDreamApp.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryProductService _categoryProductService;
         private readonly IOrderService _orderService;
+        private readonly IConfirmOrderService _confirmOrderService;
+        private readonly IAccountService _accountService;
 
-        public OrderController(IProductService productService, ICategoryProductService categoryProductService, IOrderService orderService )
+        public OrderController(IAccountService accountService, IConfirmOrderService confirmOrderService, IProductService productService, ICategoryProductService categoryProductService, IOrderService orderService )
         {
             _productService = productService;
             _categoryProductService = categoryProductService;
             _orderService = orderService;
-        }
+            _confirmOrderService = confirmOrderService;
+			_accountService = accountService;
+
+		}
 
         [HttpGet]
         public async Task<ActionResult> CreateOrder(int id)
@@ -99,7 +105,7 @@ namespace MyPhotoDreamApp.Controllers
 		}
 
 		
-		[HttpGet]
+		[HttpGet]//не доделан
 		public async Task<IActionResult> Edit(int id)
 		{
 			var orderResponse = _orderService.GetOrder(id);
@@ -125,6 +131,33 @@ namespace MyPhotoDreamApp.Controllers
 
 			return RedirectToAction("Error");
 		}
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateConfirmOrder(string phoneNumber, string finalSumm1, bool checkDelivery, string deliveryAddress)
+        {
+ 			var confirmOrder = new ConfirmOrder()
+            {
+				SummOrder = Convert.ToDecimal(finalSumm1),
+                DeliveryAddress = deliveryAddress,
+                CheckDelivery = checkDelivery,
+			};
+
+            var responseConfirmOrderCreate = await _confirmOrderService.Create(confirmOrder, phoneNumber);
+            if (responseConfirmOrderCreate.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                var confirmOrderViewModel = new ConfirmOrderViewModel()
+                {
+                    Id = responseConfirmOrderCreate.Data.Id,
+                    PhoneNumber = User.Identity.Name,
+                    FinalSumm = Convert.ToDecimal(finalSumm1)
+				};
+				return View(confirmOrderViewModel);
+			}
+			return RedirectToAction("Index", "Home");
+		}
+
+
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

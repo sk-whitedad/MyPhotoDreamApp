@@ -15,6 +15,7 @@ namespace MyPhotoDreamApp
             services.AddScoped<IBaseRepository<Product>, ProductRepository>();
             services.AddScoped<IBaseRepository<Order>, OrderRepository>();
             services.AddScoped<IBaseRepository<Basket>, BasketRepository>();
+            services.AddScoped<IBaseRepository<ConfirmOrder>, ConfirmOrderRepository>();
 		}
 
         public static void InitializeServices(this IServiceCollection services)
@@ -24,6 +25,7 @@ namespace MyPhotoDreamApp
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IConfirmOrderService, ConfirmOrderService>();
 		}
     }
 }

@@ -1,0 +1,20 @@
+﻿@model MyPhotoDreamApp.Domain.ViewModels.Order.ConfirmOrderViewModel
+@{
+    ViewData["Title"] = "Confirmed order";
+}
+
+<h1 class="header-text-top">Заказ подтвержден</h1>
+
+
+<hr />
+
+<div>
+    <h4>Номер заказа: @Model.Id</h4>
+    <p>Номер вашего телефона: @Model.PhoneNumber</p>
+    <p>На него поступит сообщение о готовности заказа</p>
+    <h5>Сумма заказа: @Model.FinalSumm руб.</h5>
+    <p></p>
+    <p>Для оплаты заказа используйте СБП на номер 8-920-646-62-66</p>
+    <p>Банк: Сбербанк</p>
+    <p>Получатель: Сергей Александрович К.</p>
+</div>
