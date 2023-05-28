@@ -83,5 +83,5 @@ namespace MyPhotoDreamApp.DAL
 			});
 
 		}
-	}
+	} 
 }
