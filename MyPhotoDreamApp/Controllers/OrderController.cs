@@ -167,8 +167,46 @@ namespace MyPhotoDreamApp.Controllers
 		}
 
 
+        [HttpGet]//для админа показывает все подтвержденные заказы
+		public async Task<ActionResult> GetAllConfirmOrders()
+		{
+            var confirmOrderResponse = await _confirmOrderService.GetAllConfirmOrders();
+            if (confirmOrderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                return View(confirmOrderResponse.Data);
+            }
+			return RedirectToAction("Error");
+		}
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+        [HttpPost]
+        public async Task<IActionResult> DelConfirmOrder(int id)
+        {
+            var confirmOrderResponse = _confirmOrderService.GetOrder(id);
+            if (confirmOrderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                var ordersList = _confirmOrderService.GetListOrders(id).Data;
+                var responseDelBdOrder = await _confirmOrderService.Delete(id);//удаление заказа из БД
+                if (responseDelBdOrder.StatusCode == Domain.Enum.StatusCode.OK)
+                {
+                    foreach (var order in ordersList)
+                    {
+                        _orderService.RemoveFolderOrder(order.Name);//удаление заказа из папки
+                    }
+                    return RedirectToAction("GetAllConfirmOrders", "Order");
+                }
+            }
+
+            return RedirectToAction("Error");
+        }
+
+
+
+
+
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

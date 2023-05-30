@@ -4,6 +4,7 @@ using MyPhotoDreamApp.DAL.Repositories;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.Enum;
 using MyPhotoDreamApp.Domain.Response;
+using MyPhotoDreamApp.Domain.ViewModels.Order;
 using MyPhotoDreamApp.Service.Interfaces;
 
 namespace MyPhotoDreamApp.Service.Implementations
@@ -91,9 +92,25 @@ namespace MyPhotoDreamApp.Service.Implementations
 		{
 			try
 			{
-				return new BaseResponse<bool>()
+				var confirmOrder = _confirmOrderRepository.GetAll()
+					.FirstOrDefault(y => y.Id == id);
+
+				if (confirmOrder == null)
 				{
-				};
+                    return new BaseResponse<bool>()
+                    {
+                        Description = "Pаказ не найден",
+                        StatusCode = StatusCode.UserNotFound
+                    };
+                }
+				await _confirmOrderRepository.Delete(confirmOrder);
+
+                return new BaseResponse<bool>()
+				{
+					Data = true,
+                    Description = "Заказ удален",
+                    StatusCode = StatusCode.OK
+                };
 			}
 			catch (Exception ex)
 			{
@@ -105,17 +122,52 @@ namespace MyPhotoDreamApp.Service.Implementations
 			}
 		}
 
-		public async Task<IBaseResponse<int>> GetCount()
+		public async Task<IBaseResponse<List<AllConfirmOrderViewModel>>> GetAllConfirmOrders()
 		{
 			try
-			{
-				return new BaseResponse<int>()
+			{ 
+				var allConfirmOrders = _confirmOrderRepository.GetAll()
+					.Include(x => x.User)
+					.ToList();
+				
+				if (allConfirmOrders == null)
 				{
-				};
+                    return new BaseResponse<List<AllConfirmOrderViewModel>>()
+                    {
+                        Description = "Подтвержденные заказы не найдены",
+                        StatusCode = StatusCode.UserNotFound
+                    };
+                }
+                var _allConfirmOrdersList = new List<AllConfirmOrderViewModel>();
+                foreach (var confirmOrder in allConfirmOrders)
+				{
+					string chkD;
+					if (confirmOrder.CheckDelivery == true)
+						chkD = "Есть";
+					else chkD = "Нет";
+					var allConfirmOrderViewModel = new AllConfirmOrderViewModel()
+					{
+						Id = confirmOrder.Id,
+                        SummOrder = confirmOrder.SummOrder,
+                        CheckDelivery = chkD,
+						DeliveryAddress = confirmOrder.DeliveryAddress,
+						DateCreated = confirmOrder.DateCreated,
+						PhoneNumber = confirmOrder.User.PhoneNumber,
+                    };
+
+                    _allConfirmOrdersList.Add(allConfirmOrderViewModel);
+                }
+				
+                return new BaseResponse<List<AllConfirmOrderViewModel>>()
+				{
+					Data = _allConfirmOrdersList,
+                    Description = "Подтвержденные заказы найдены",
+                    StatusCode = StatusCode.OK
+                };
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<int>()
+				return new BaseResponse<List<AllConfirmOrderViewModel>>()
 				{
 					Description = ex.Message,
 					StatusCode = StatusCode.InternalServerError
@@ -123,12 +175,58 @@ namespace MyPhotoDreamApp.Service.Implementations
 			}
 		}
 
-		public IBaseResponse<ConfirmOrder> GetOrder(int id)
+        public IBaseResponse<List<Order>> GetListOrders(int id)
+        {
+            try
+            {
+				var confirmOrder = _confirmOrderRepository.GetAll()
+					.Include(x => x.Orders)
+					.FirstOrDefault(y => y.Id == id);
+				if (confirmOrder == null)
+				{
+                    return new BaseResponse<List<Order>>()
+                    {
+                        Description = "Подтвержденные заказы не найдены",
+                        StatusCode = StatusCode.UserNotFound
+                    };
+                }
+
+                return new BaseResponse<List<Order>>()
+                {
+                    Data = confirmOrder.Orders,
+                    Description = "Звказы найдены",
+                    StatusCode = StatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<List<Order>>()
+                {
+                    Description = ex.Message,
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
+        public IBaseResponse<ConfirmOrder> GetOrder(int id)
 		{
 			try
 			{
+				var confirmOrder = _confirmOrderRepository.GetAll()
+					.FirstOrDefault(y => y.Id == id);
+				if (confirmOrder == null)
+				{
+					return new BaseResponse<ConfirmOrder>()
+					{
+						Description = "Подтвержденный заказ не найден",
+						StatusCode = StatusCode.UserNotFound
+					};
+				}
 				return new BaseResponse<ConfirmOrder>()
 				{
+					Data = confirmOrder,
+					StatusCode= StatusCode.OK,
+					Description = "Заказ найден"
 				};
 			}
 			catch (Exception ex)

@@ -1,5 +1,6 @@
 ﻿using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.Response;
+using MyPhotoDreamApp.Domain.ViewModels.Order;
 
 namespace MyPhotoDreamApp.Service.Interfaces
 {
@@ -9,8 +10,10 @@ namespace MyPhotoDreamApp.Service.Interfaces
 
 		Task<IBaseResponse<bool>> Delete(int id);
 
-		Task<IBaseResponse<int>> GetCount();
+		Task<IBaseResponse<List<AllConfirmOrderViewModel>>> GetAllConfirmOrders();
 
 		IBaseResponse<ConfirmOrder> GetOrder(int id);
+
+		IBaseResponse<List<Order>> GetListOrders(int id);
 	}
 }
