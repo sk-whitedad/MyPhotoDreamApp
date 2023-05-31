@@ -99,7 +99,7 @@ namespace MyPhotoDreamApp.Service.Implementations
 				{
                     return new BaseResponse<bool>()
                     {
-                        Description = "Pаказ не найден",
+                        Description = "Заказ не найден",
                         StatusCode = StatusCode.UserNotFound
                     };
                 }

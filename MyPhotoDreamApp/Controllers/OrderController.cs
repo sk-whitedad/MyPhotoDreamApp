@@ -171,6 +171,7 @@ namespace MyPhotoDreamApp.Controllers
 		[Authorize(Roles = "Admin")]
 		public async Task<ActionResult> GetAllConfirmOrders()
 		{
+            
             var confirmOrderResponse = await _confirmOrderService.GetAllConfirmOrders();
             if (confirmOrderResponse.StatusCode == Domain.Enum.StatusCode.OK)
             {
@@ -194,6 +195,7 @@ namespace MyPhotoDreamApp.Controllers
                 {
                     foreach (var order in ordersList)
                     {
+                        await _orderService.Delete(order.Id);
                         _orderService.RemoveFolderOrder(order.Name);//удаление заказа из папки
                     }
                     return RedirectToAction("GetAllConfirmOrders", "Order");
