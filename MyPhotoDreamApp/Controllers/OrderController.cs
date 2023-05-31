@@ -166,8 +166,8 @@ namespace MyPhotoDreamApp.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-
-        [HttpGet]//для админа показывает все подтвержденные заказы
+		//[Authorize(Roles = "Admin")]
+		[HttpGet]//для админа показывает все подтвержденные заказы
 		public async Task<ActionResult> GetAllConfirmOrders()
 		{
             var confirmOrderResponse = await _confirmOrderService.GetAllConfirmOrders();
@@ -179,7 +179,8 @@ namespace MyPhotoDreamApp.Controllers
 		}
 
 
-        [HttpPost]
+		[Authorize(Roles = "Admin")]
+		[HttpPost]
         public async Task<IActionResult> DelConfirmOrder(int id)
         {
             var confirmOrderResponse = _confirmOrderService.GetOrder(id);
