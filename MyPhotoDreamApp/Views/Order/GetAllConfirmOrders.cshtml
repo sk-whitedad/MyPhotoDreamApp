@@ -23,7 +23,7 @@ else
 					<td>№ заказа</td>
 					<td>Сумма, руб.</td>
 					<td>Доставка</td>
-					<td>Адрес доставки</td>
+					<td class="td-confirm-order">Адрес доставки</td>
 					<td>Дата заказа</td>
 					<td>Телефон заказчика</td>
 					<td></td>
@@ -32,15 +32,21 @@ else
 			<tbody>
 				@foreach (var item in Model)
 				{
+					var phone = $"8{item.PhoneNumber}";
+					var address = "-";
+					if (String.IsNullOrEmpty(address))
+					{
+						address = item.DeliveryAddress;
+					}
 					<tr>
 						<td>
-							<a asp-action="" asp-controller="" asp-route-Id="">@item.Id</a>
+							<a asp-action="GetOrdersForConfirm" asp-controller="Order" asp-route-Id="@item.Id">@item.Id</a>
 						</td>
 						<td>@item.SummOrder</td>
 						<td>@item.CheckDelivery</td>
-						<td>@item.DeliveryAddress</td>
+						<td class="td-confirm-order">@address</td>
 						<td>@item.DateCreated</td>
-						<td>@item.PhoneNumber</td>
+						<td>@phone</td>
 						<td>
 							<form method="post" asp-route-Id="@item.Id" asp-action="DelConfirmOrder" asp-controller="Order">
 								<input type="submit" value="Удалить" />

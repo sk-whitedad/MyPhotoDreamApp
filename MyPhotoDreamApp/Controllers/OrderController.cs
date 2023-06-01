@@ -7,6 +7,8 @@ using MyPhotoDreamApp.Domain.ViewModels.Order;
 using MyPhotoDreamApp.Models;
 using MyPhotoDreamApp.Service.Interfaces;
 using System.Diagnostics;
+using System.IO.Compression;
+
 
 namespace MyPhotoDreamApp.Controllers
 {
@@ -39,6 +41,7 @@ namespace MyPhotoDreamApp.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
 
         [HttpPost]
         public async Task<ActionResult> CreateOrder(IFormFileCollection uploads, int id, List<int> idInputs)
@@ -86,6 +89,7 @@ namespace MyPhotoDreamApp.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
 
 		[HttpPost]
  		public async Task<IActionResult> DelOrder(int id)
@@ -180,7 +184,6 @@ namespace MyPhotoDreamApp.Controllers
 			return RedirectToAction("Error");
 		}
 
-
 		
 		[HttpPost]
 		[Authorize(Roles = "Admin")]
@@ -206,12 +209,43 @@ namespace MyPhotoDreamApp.Controllers
         }
 
 
+		[HttpGet]
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> GetOrdersForConfirm(int id)
+		{
+			var confirmOrderResponse = _confirmOrderService.GetOrder(id);
+			if (confirmOrderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+	    			var ordersList = _confirmOrderService.GetListOrders(id).Data;
+    				return View(ordersList);
+			}
+			return RedirectToAction("Error");
+		}
+
+
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> DownLoadOrder(int id)
+		{
+            var orderResponse = _orderService.GetOrder(id);
+            if (orderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+				var ordersList = _confirmOrderService.GetListOrders((int)orderResponse.Data.ConfirmOrderId).Data;
+				string sourceFolder = $"{Directory.GetCurrentDirectory()}/uploads/{orderResponse.Data.Name}"; // исходная папка
+				string uploadPath = $"{Directory.GetCurrentDirectory()}/uploads/zip_orders/{(int)orderResponse.Data.ConfirmOrderId}";
+				Directory.CreateDirectory(uploadPath);
+				string zipFile = $"{uploadPath}/{orderResponse.Data.Name}.zip"; // имя файла zip арзива
+				ZipFile.CreateFromDirectory(sourceFolder, zipFile);
+
+                return View("GetOrdersForConfirm", ordersList);
+			}
+
+
+			return RedirectToAction("Error");
+		}
 
 
 
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

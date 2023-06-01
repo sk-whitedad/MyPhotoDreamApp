@@ -25,6 +25,12 @@ body {
     --bs-dark-rgb: 44, 74, 81;
 }
 
+
+.td-confirm-order {
+    text-align: center;
+}
+
+
 .navbar-brand {
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;

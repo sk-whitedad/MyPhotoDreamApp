@@ -1,0 +1,47 @@
+﻿@model List<MyPhotoDreamApp.Domain.Entity.Order>
+
+@{
+	ViewData["Title"] = "All orders";
+}
+	<h1 class="header-text-top">Заказы в данном ордере</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<table class="iksweb">
+			<thead>
+				<tr>
+					<td>№ заказа</td>
+					<td>Название</td>
+					<td>Количество</td>
+					<td>Сумма, руб.</td>
+					<td>Дата заказа</td>
+					<td>Телефон заказчика</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					var summ = item.Price * item.Quantity;
+					var phone = $"8{item.PhoneNumber}";
+					<tr>
+						<td>
+							<a asp-action="GetOrdersForConfirm" asp-controller="Order" asp-route-Id="@item.Id">@item.Id</a>
+						</td>
+						<td>@item.Name</td>
+						<td>@item.Quantity</td>
+						<td>@summ</td>
+						<td>@item.DateCreated</td>
+						<td>@phone</td>
+						<td>
+							<a asp-action="DownLoadOrder" asp-controller="Order" asp-route-Id="@item.Id">Скачать</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<p><a asp-action="Index" asp-controller="Home">Вернуться в каталог сервисов</a></p>
+
+	</div>
+</div>
