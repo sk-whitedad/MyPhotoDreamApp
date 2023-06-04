@@ -2,13 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.FileProviders;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.ViewModels.Order;
 using MyPhotoDreamApp.Models;
 using MyPhotoDreamApp.Service.Interfaces;
 using System.Diagnostics;
+using System.IO;
 using System.IO.Compression;
-
+using System.Reflection;
 
 namespace MyPhotoDreamApp.Controllers
 {
@@ -234,14 +236,76 @@ namespace MyPhotoDreamApp.Controllers
 				string uploadPath = $"{Directory.GetCurrentDirectory()}/uploads/zip_orders/{(int)orderResponse.Data.ConfirmOrderId}";
 				Directory.CreateDirectory(uploadPath);
 				string zipFile = $"{uploadPath}/{orderResponse.Data.Name}.zip"; // имя файла zip арзива
-				ZipFile.CreateFromDirectory(sourceFolder, zipFile);
 
-                return View("GetOrdersForConfirm", ordersList);
+				FileInfo fileInfo = new FileInfo(zipFile);
+                if (fileInfo.Exists)// если файл существует то удаляем его
+                {
+					fileInfo.Delete();
+				}
+				ZipFile.CreateFromDirectory(sourceFolder, zipFile, CompressionLevel.Optimal, true);// создаем новый zip файл
+
+                //передаем файл в браузер
+                var fileType = "application/zip";
+				FileStream fs = new FileStream(zipFile, FileMode.Open);
+				return File(fs, fileType, $"{orderResponse.Data.Name}.zip");
 			}
-
-
 			return RedirectToAction("Error");
 		}
+
+		
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> DownLoadAllOrders(int id)
+		{
+			var orderResponse = _confirmOrderService.GetListOrders(id);
+			if (orderResponse.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+                //получаем список Order.Name данного заказа
+                var ordersList = orderResponse.Data;
+                //тут в цикле нужно определить исходную папку каждого ордера
+                foreach (var order in ordersList)
+                {
+                    string sourceFolder = $"{Directory.GetCurrentDirectory()}/uploads/{order.Name}"; // исходная папка
+                    string uploadPath = $"{Directory.GetCurrentDirectory()}/uploads/zip_orders/confirm_{id}";// куда будем сохранять
+                    Directory.CreateDirectory(uploadPath);// создаем папки для заказа если не существуют
+                    string zipFile = $"{uploadPath}/{order.Name}.zip"; // имя файла zip архива
+
+                    FileInfo fileInfo = new FileInfo(zipFile);
+                    if (fileInfo.Exists)// если файл существует то удаляем его
+                    {
+                        fileInfo.Delete();
+                    }
+                    ZipFile.CreateFromDirectory(sourceFolder, zipFile, CompressionLevel.Optimal, true);// создаем новый zip файл
+                }
+
+				string _sourceFolder = $"{Directory.GetCurrentDirectory()}/uploads/zip_orders/confirm_{id}"; // исходная папка
+				string _uploadPath = $"{Directory.GetCurrentDirectory()}/uploads/zip_orders";// куда будем сохранять
+				string _zipFile = $"{_uploadPath}/confirm_{id}.zip"; // имя файла zip архива
+
+				FileInfo _fileInfo = new FileInfo(_zipFile);
+				if (_fileInfo.Exists)// если файл существует то удаляем его
+				{
+					_fileInfo.Delete();
+				}
+				ZipFile.CreateFromDirectory(_sourceFolder, _zipFile, CompressionLevel.Optimal, true);// создаем новый zip файл
+
+				//передаем файл в браузер
+				var fileType = "application/zip";
+				FileStream fs = new FileStream(_zipFile, FileMode.Open);
+				return File(fs, fileType, $"confirm_{id}.zip");
+			}
+			return RedirectToAction("Error");
+		}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

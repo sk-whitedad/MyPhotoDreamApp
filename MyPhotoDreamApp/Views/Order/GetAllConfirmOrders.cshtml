@@ -27,6 +27,7 @@ else
 					<td>Дата заказа</td>
 					<td>Телефон заказчика</td>
 					<td></td>
+					<td></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -47,6 +48,10 @@ else
 						<td class="td-confirm-order">@address</td>
 						<td>@item.DateCreated</td>
 						<td>@phone</td>
+						<td>
+							<a asp-action="DownLoadAllOrders" asp-controller="Order" asp-route-Id="@item.Id">Скачать</a>
+						</td>
+
 						<td>
 							<form method="post" asp-route-Id="@item.Id" asp-action="DelConfirmOrder" asp-controller="Order">
 								<input type="submit" value="Удалить" />
