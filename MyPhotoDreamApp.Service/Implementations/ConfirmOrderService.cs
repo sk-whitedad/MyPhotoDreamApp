@@ -238,5 +238,45 @@ namespace MyPhotoDreamApp.Service.Implementations
 				};
 			}
 		}
+
+
+
+		public IBaseResponse<bool> ClearZipFolder(string path)
+		{
+			var uploadPath = $"{Directory.GetCurrentDirectory()}/{path}";
+
+			if (!Directory.Exists(uploadPath))
+			{
+				return new BaseResponse<bool>()
+				{
+					Data = false,
+					StatusCode = StatusCode.OrderNotFound,
+					Description = "Каталог заказа не найден"
+				};
+			};
+
+			try
+			{
+				Directory.Delete(uploadPath, true);
+				return new BaseResponse<bool>()
+				{
+					Data = true,
+					Description = "Каталог заказа уделен",
+					StatusCode = StatusCode.OK
+				};
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<bool>()
+				{
+					Data = false,
+					Description = ex.Message,
+					StatusCode = StatusCode.InternalServerError
+				};
+			}
+		}
+
+
+
 	}
 }

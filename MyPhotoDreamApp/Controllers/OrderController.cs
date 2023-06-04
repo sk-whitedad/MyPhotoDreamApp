@@ -203,6 +203,7 @@ namespace MyPhotoDreamApp.Controllers
                         await _orderService.Delete(order.Id);
                         _orderService.RemoveFolderOrder(order.Name);//удаление заказа из папки
                     }
+                    _confirmOrderService.ClearZipFolder("uploads/zip_orders");
                     return RedirectToAction("GetAllConfirmOrders", "Order");
                 }
             }
@@ -291,6 +292,7 @@ namespace MyPhotoDreamApp.Controllers
 				//передаем файл в браузер
 				var fileType = "application/zip";
 				FileStream fs = new FileStream(_zipFile, FileMode.Open);
+                _confirmOrderService.ClearZipFolder($"uploads/zip_orders/confirm_{id}");
 				return File(fs, fileType, $"confirm_{id}.zip");
 			}
 			return RedirectToAction("Error");

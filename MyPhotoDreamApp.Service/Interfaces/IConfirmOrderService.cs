@@ -15,5 +15,8 @@ namespace MyPhotoDreamApp.Service.Interfaces
 		IBaseResponse<ConfirmOrder> GetOrder(int id);
 
 		IBaseResponse<List<Order>> GetListOrders(int id);
+
+		IBaseResponse<bool> ClearZipFolder(string path);
+
 	}
 }
