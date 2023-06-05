@@ -1,4 +1,5 @@
-﻿using MyPhotoDreamApp.DAL.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyPhotoDreamApp.DAL.Interfaces;
 using MyPhotoDreamApp.Domain.Entity;
 
 namespace MyPhotoDreamApp.DAL.Repositories
@@ -31,10 +32,14 @@ namespace MyPhotoDreamApp.DAL.Repositories
 
         public async Task<User> Update(User entity)
         {
-            _db.Users.Update(entity);
-            await _db.SaveChangesAsync();
-
-            return entity;
+            var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == entity.Id);
+            if (user != null)
+            {
+                user.PhoneNumber = entity.PhoneNumber;
+                user.Role = entity.Role;
+                await _db.SaveChangesAsync();
+            }
+            return user;
         }
     }
 }

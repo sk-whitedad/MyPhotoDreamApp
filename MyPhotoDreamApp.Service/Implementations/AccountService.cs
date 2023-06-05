@@ -7,6 +7,7 @@ using MyPhotoDreamApp.Domain.Helpers;
 using MyPhotoDreamApp.Domain.Response;
 using MyPhotoDreamApp.Domain.ViewModels.Account;
 using MyPhotoDreamApp.Service.Interfaces;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace MyPhotoDreamApp.Service.Implementations
@@ -118,5 +119,114 @@ namespace MyPhotoDreamApp.Service.Implementations
             return new ClaimsIdentity(claims, "ApplicationCookie",
                 ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
         }
+
+        public async Task<IBaseResponse<List<User>>> GetUsers()
+        {
+            try
+            {
+                var users = _userRepository.GetAll().ToList();
+                if (users == null)
+                {
+                    return new BaseResponse<List<User>> ()
+                    {
+                        Description = "Клиенты не найдены",
+                        StatusCode = StatusCode.UserNotFound
+                    };
+                }
+                return new BaseResponse<List<User>>()
+                {
+                    Data = users,
+                    Description = "Клиенты найдены",
+                    StatusCode = StatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<List<User>>()
+                {
+                    Description = ex.Message,
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
+		public async Task<IBaseResponse<User>> GetUser(int id)
+		{
+			try
+			{
+				var users = _userRepository.GetAll();
+				if (users == null)
+				{
+					return new BaseResponse<User> ()
+					{
+						Description = "Клиенты не найдены",
+						StatusCode = StatusCode.UserNotFound
+					};
+				}
+
+                var user = users.FirstOrDefault(x => x.Id == id);
+				return new BaseResponse<User>()
+				{
+					Data = user,
+					Description = "Клиент найден",
+					StatusCode = StatusCode.OK
+				};
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<User>()
+				{
+					Description = ex.Message,
+					StatusCode = StatusCode.InternalServerError
+				};
+			}
+		}
+
+        public async Task<IBaseResponse<User>> EditUser(int id, UserViewModel model)
+        {
+            try
+            {
+                var userDuble = _userRepository.GetAll().FirstOrDefault(x => x.PhoneNumber == model.PhoneNumber);
+                if (userDuble != null)
+                {
+                    return new BaseResponse<User>()
+                    {
+                        Description = "Пользователь с таким номером телефона уже есть",
+                    };
+                }
+                var _user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
+                if (_user == null)
+                {
+                    return new BaseResponse<User>()
+                    {
+                        Description = "Клиент не найдены",
+                        StatusCode = StatusCode.UserNotFound
+                    };
+                }
+                User user = new User()
+                {
+                    Id = model.Id,
+                    PhoneNumber = model.PhoneNumber,
+                    Role = model.Role
+                };
+                await _userRepository.Update(user);
+                return new BaseResponse<User>()
+                {
+                    Data = user,
+                    Description = "Клиент изменен",
+                    StatusCode = StatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<User>()
+                {
+                    Description = ex.Message,
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
+
     }
 }

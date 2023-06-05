@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MyPhotoDreamApp.Domain.Entity;
+using MyPhotoDreamApp.Domain.Enum;
 using MyPhotoDreamApp.Domain.ViewModels.Account;
 using MyPhotoDreamApp.Service.Interfaces;
 using System.Security.Claims;
@@ -28,10 +30,10 @@ namespace MyPhotoDreamApp.Controllers
 
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = "/Home/Index") 
+        public IActionResult Login(string returnUrl = "/Home/Index")
         {
-			return View(new LoginViewModel { ReturnUrl = returnUrl });
-		}
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
@@ -74,6 +76,79 @@ namespace MyPhotoDreamApp.Controllers
             return View(model);
         }
 
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var response = await _accountService.GetUsers();
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                return View(response.Data);
+            }
+            return RedirectToAction("Error");
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditUser(int id)
+        {
+            var response = await _accountService.GetUser(id);
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                List<string> sourse = new List<string>();
+                sourse.Add(Role.User.ToString());
+                sourse.Add(Role.Moderator.ToString());
+                sourse.Add(Role.Admin.ToString());
+                SelectList selectList = new SelectList(sourse, response.Data.Role.ToString());
+                ViewBag.SelectItems = selectList;
+                UserViewModel model = new UserViewModel()
+                {
+                    Id = id,
+                    PhoneNumber = response.Data.PhoneNumber
+                };
+                return View(model);
+            }
+            return RedirectToAction("Error");
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EditUser(int id, UserViewModel user, string SelectedItem)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _accountService.GetUser(id);
+                if (response.StatusCode == Domain.Enum.StatusCode.OK)
+                {
+                    Role role = Role.User;
+                    if (SelectedItem == "User") role = Role.User;
+                    if (SelectedItem == "Moderator") role = Role.Moderator;
+                    if (SelectedItem == "Admin") role = Role.Admin;
+
+                    user.Id = id;
+                    user.Role = role;
+
+                    var responseEdit = await _accountService.EditUser(id, user);
+                    if (responseEdit.StatusCode == Domain.Enum.StatusCode.OK)
+                    {
+                        return RedirectToAction("GetAllUsers", "Account");
+                    }
+                    List<string> sourse = new List<string>();
+                    sourse.Add(Role.User.ToString());
+                    sourse.Add(Role.Moderator.ToString());
+                    sourse.Add(Role.Admin.ToString());
+                    SelectList selectList = new SelectList(sourse, SelectedItem);
+                    ViewBag.SelectItems = selectList;
+
+                    ModelState.AddModelError("", responseEdit.Description);
+                }
+
+            }
+            return View(user);
+        }
 
     }
 }

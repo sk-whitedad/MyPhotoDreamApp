@@ -1,0 +1,45 @@
+﻿@model List<MyPhotoDreamApp.Domain.Entity.User>
+
+@{
+	ViewData["Title"] = "All users";
+}
+	<h1 class="header-text-top">Список зарегистрированных пользователей</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<table class="iksweb">
+			<thead>
+				<tr>
+					<td>№ п.п.</td>
+					<td>Номер телефона</td>
+					<td>Права</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					var phone = $"8{item.PhoneNumber}";
+					<tr>
+						<td>@item.Id</td>
+						<td>@item.PhoneNumber</td>
+						<td class="td-confirm-order">@item.Role</td>
+						<td>
+							<a asp-action="EditUser" asp-controller="Account" asp-route-Id="@item.Id">Редактировать</a>
+						</td>
+
+						<td>
+							<form method="post" asp-route-Id="@item.Id" asp-action="DelUser" asp-controller="Account">
+								<input type="submit" value="Удалить" />
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<p><a asp-action="Index" asp-controller="Home">Вернуться в каталог сервисов</a></p>
+
+	</div>
+</div>
+

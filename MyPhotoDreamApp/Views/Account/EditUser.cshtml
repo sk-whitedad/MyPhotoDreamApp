@@ -1,0 +1,42 @@
+﻿@model MyPhotoDreamApp.Domain.ViewModels.Account.UserViewModel
+@{
+    ViewData["Title"] = "Edit user";
+}
+
+<h1>Редактирование профиля пользователя</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div class="form">
+            <form asp-action="EditUser" asp-controller="Account" asp-route-Model="@Model">
+                <div asp-validation-summary="All"></div>
+                <p>
+                    <label asp-for="PhoneNumber"></label><br />
+                    <input asp-for="PhoneNumber" type="text" value="@Model.PhoneNumber">
+                </p>
+                <p>
+                    <label asp-for="Role"></label><br />
+                    <select name="SelectedItem" asp-items="@ViewBag.SelectItems"></select>
+                </p>
+                <p>
+                    <input type="button" onclick="history.back(-2); return false;" value="Назад" />
+                    <input type="submit" value="Сохранить" />
+                </p>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var elem = document.getElementsByName("SelectedItem");
+    if (elem[0].innerText == '') {
+        var newOption1 = new Option("User", "User");
+        var newOption2 = new Option("Moderator", "Moderator");
+        var newOption3 = new Option("Admin", "Admin");
+        elem[0].add(newOption1);
+        elem[0].add(newOption2);
+        elem[0].add(newOption3);
+    };
+</script>

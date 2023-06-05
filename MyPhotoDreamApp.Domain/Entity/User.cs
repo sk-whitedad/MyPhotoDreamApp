@@ -9,12 +9,15 @@ namespace MyPhotoDreamApp.Domain.Entity
     {
         public int Id { get; set; }
 
-		[DataType(DataType.PhoneNumber)]
+        [Display(Name = "Номер телефона")]
+        [DataType(DataType.PhoneNumber)]
 		public string PhoneNumber { get; set; }
 
+        [Display(Name = "Пароль в зашифрованном виде")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        
+
+        [Display(Name = "Роль")]
         public Role Role { get; set; }
 
         public Basket Basket { get; set; }
