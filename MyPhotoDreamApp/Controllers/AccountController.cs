@@ -116,22 +116,20 @@ namespace MyPhotoDreamApp.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> EditUser(int id, UserViewModel user, string SelectedItem)
+        public async Task<IActionResult> EditUser(UserViewModel user, string SelectedItem)
         {
             if (ModelState.IsValid)
             {
-                var response = await _accountService.GetUser(id);
+                var response = await _accountService.GetUser(user.Id);
                 if (response.StatusCode == Domain.Enum.StatusCode.OK)
                 {
                     Role role = Role.User;
-                    if (SelectedItem == "User") role = Role.User;
                     if (SelectedItem == "Moderator") role = Role.Moderator;
                     if (SelectedItem == "Admin") role = Role.Admin;
 
-                    user.Id = id;
                     user.Role = role;
 
-                    var responseEdit = await _accountService.EditUser(id, user);
+                    var responseEdit = await _accountService.EditUser(user);
                     if (responseEdit.StatusCode == Domain.Enum.StatusCode.OK)
                     {
                         return RedirectToAction("GetAllUsers", "Account");

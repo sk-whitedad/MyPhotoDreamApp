@@ -15,7 +15,7 @@ namespace MyPhotoDreamApp.Service.Interfaces
 
         Task<IBaseResponse<User>> GetUser(int id);
 
-        Task<IBaseResponse<User>> EditUser(int id, UserViewModel model);
+        Task<IBaseResponse<User>> EditUser(UserViewModel model);
 
     }
 }

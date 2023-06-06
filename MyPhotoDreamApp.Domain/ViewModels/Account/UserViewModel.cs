@@ -22,5 +22,8 @@ namespace MyPhotoDreamApp.Domain.ViewModels.Account
         [Display(Name = "Роль")]
         public Role Role { get; set; }
 
+        [DataType(DataType.Password)]
+        public string? Password { get; set; }
+
     }
 }

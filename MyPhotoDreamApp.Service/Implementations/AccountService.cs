@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyPhotoDreamApp.DAL.Interfaces;
-using MyPhotoDreamApp.DAL.Repositories;
 using MyPhotoDreamApp.Domain.Entity;
 using MyPhotoDreamApp.Domain.Enum;
 using MyPhotoDreamApp.Domain.Helpers;
 using MyPhotoDreamApp.Domain.Response;
 using MyPhotoDreamApp.Domain.ViewModels.Account;
 using MyPhotoDreamApp.Service.Interfaces;
-using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace MyPhotoDreamApp.Service.Implementations
@@ -127,7 +125,7 @@ namespace MyPhotoDreamApp.Service.Implementations
                 var users = _userRepository.GetAll().ToList();
                 if (users == null)
                 {
-                    return new BaseResponse<List<User>> ()
+                    return new BaseResponse<List<User>>()
                     {
                         Description = "Клиенты не найдены",
                         StatusCode = StatusCode.UserNotFound
@@ -150,43 +148,43 @@ namespace MyPhotoDreamApp.Service.Implementations
             }
         }
 
-		public async Task<IBaseResponse<User>> GetUser(int id)
-		{
-			try
-			{
-				var users = _userRepository.GetAll();
-				if (users == null)
-				{
-					return new BaseResponse<User> ()
-					{
-						Description = "Клиенты не найдены",
-						StatusCode = StatusCode.UserNotFound
-					};
-				}
-
-                var user = users.FirstOrDefault(x => x.Id == id);
-				return new BaseResponse<User>()
-				{
-					Data = user,
-					Description = "Клиент найден",
-					StatusCode = StatusCode.OK
-				};
-			}
-			catch (Exception ex)
-			{
-				return new BaseResponse<User>()
-				{
-					Description = ex.Message,
-					StatusCode = StatusCode.InternalServerError
-				};
-			}
-		}
-
-        public async Task<IBaseResponse<User>> EditUser(int id, UserViewModel model)
+        public async Task<IBaseResponse<User>> GetUser(int id)
         {
             try
             {
-                var userDuble = _userRepository.GetAll().FirstOrDefault(x => x.PhoneNumber == model.PhoneNumber);
+                var users = _userRepository.GetAll();
+                if (users == null)
+                {
+                    return new BaseResponse<User>()
+                    {
+                        Description = "Клиенты не найдены",
+                        StatusCode = StatusCode.UserNotFound
+                    };
+                }
+
+                var user = users.FirstOrDefault(x => x.Id == id);
+                return new BaseResponse<User>()
+                {
+                    Data = user,
+                    Description = "Клиент найден",
+                    StatusCode = StatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<User>()
+                {
+                    Description = ex.Message,
+                    StatusCode = StatusCode.InternalServerError
+                };
+            }
+        }
+
+        public async Task<IBaseResponse<User>> EditUser(UserViewModel model)
+        {
+            try
+            {
+                var userDuble = _userRepository.GetAll().FirstOrDefault(x => x.PhoneNumber == model.PhoneNumber && x.Id != model.Id);
                 if (userDuble != null)
                 {
                     return new BaseResponse<User>()
@@ -194,7 +192,7 @@ namespace MyPhotoDreamApp.Service.Implementations
                         Description = "Пользователь с таким номером телефона уже есть",
                     };
                 }
-                var _user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
+                var _user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.Id == model.Id);
                 if (_user == null)
                 {
                     return new BaseResponse<User>()
@@ -203,12 +201,20 @@ namespace MyPhotoDreamApp.Service.Implementations
                         StatusCode = StatusCode.UserNotFound
                     };
                 }
-                User user = new User()
+                User user = new User();
+                if (model.Password != null)
                 {
-                    Id = model.Id,
-                    PhoneNumber = model.PhoneNumber,
-                    Role = model.Role
-                };
+                    user.Id = model.Id;
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.Role = model.Role;
+                    user.Password = HashPasswordHelper.HashPassowrd(model.Password);
+                }
+                else
+                {
+                    user.Id = model.Id;
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.Role = model.Role;
+                }
                 await _userRepository.Update(user);
                 return new BaseResponse<User>()
                 {

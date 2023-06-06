@@ -20,6 +20,12 @@
                     <select name="SelectedItem" asp-items="@ViewBag.SelectItems"></select>
                 </p>
                 <p>
+                    <label>Изменить пароль:</label></><br />
+                    <label>Введите новый пароль</label></><br />
+                    <input asp-for="Password" type="text">
+                </p>
+
+                <p>
                     <input type="button" onclick="history.back(-2); return false;" value="Назад" />
                     <input type="submit" value="Сохранить" />
                 </p>

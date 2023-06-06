@@ -37,6 +37,10 @@ namespace MyPhotoDreamApp.DAL.Repositories
             {
                 user.PhoneNumber = entity.PhoneNumber;
                 user.Role = entity.Role;
+                if (entity.Password != null)
+                {
+                    user.Password = entity.Password;
+                }
                 await _db.SaveChangesAsync();
             }
             return user;
