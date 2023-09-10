@@ -365,5 +365,24 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /MyPhotoDreamApp/photodreamDB.db-shm
+/MyPhotoDreamApp/uploads/
+*/bin/
+*/obj/
 /uploads/
 photodreamDB.db
+/MyPhotoDreamApp.Service/bin/Debug/net7.0/MyPhotoDreamApp.Service.pdb
+/MyPhotoDreamApp.Service/bin/Debug/net7.0/MyPhotoDreamApp.Service.dll
+/MyPhotoDreamApp.Service/bin/Debug/net7.0/MyPhotoDreamApp.Domain.pdb
+/MyPhotoDreamApp.Service/bin/Debug/net7.0/MyPhotoDreamApp.Domain.dll
+/MyPhotoDreamApp.Service/bin/Debug/net7.0/MyPhotoDreamApp.DAL.pdb
+/MyPhotoDreamApp.Service/bin/Debug/net7.0/MyPhotoDreamApp.DAL.dll
+/MyPhotoDreamApp.Domain/obj/Debug/net7.0/refint/MyPhotoDreamApp.Domain.dll
+/MyPhotoDreamApp.Service/obj/Debug/net7.0/refint/MyPhotoDreamApp.Service.dll
+/MyPhotoDreamApp.Service/obj/Debug/net7.0/MyPhotoDreamApp.Service.pdb
+/MyPhotoDreamApp.Service/obj/Debug/net7.0/MyPhotoDreamApp.Service.dll
+/MyPhotoDreamApp.Service/obj/Debug/net7.0/MyPhotoDreamApp.Service.csproj.CoreCompileInputs.cache
+/MyPhotoDreamApp.Service/obj/Debug/net7.0/MyPhotoDreamApp.Service.csproj.AssemblyReference.cache
+/MyPhotoDreamApp.Domain/obj/Debug/net7.0/MyPhotoDreamApp.Domain.csproj.CoreCompileInputs.cache
+/MyPhotoDreamApp.Domain/obj/Debug/net7.0/MyPhotoDreamApp.Domain.csproj.AssemblyReference.cache
+/MyPhotoDreamApp/photodreamDB.db-wal
+/MyPhotoDreamApp/photodreamDB.db-shm
