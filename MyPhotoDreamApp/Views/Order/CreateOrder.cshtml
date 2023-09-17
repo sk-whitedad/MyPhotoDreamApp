@@ -29,7 +29,7 @@
                 <form method="post" asp-action="CreateOrder" name="idInputs" asp-controller="Order" enctype="multipart/form-data">
                     <div id="placehere"></div>
                     <p>
-                        <input id="inptFile" onchange="showFile(this)" type="file" name="uploads" accept="image/jpeg,image/png" multiple /><br>
+                        <input id="inptFile" onchange="showFile(this)" type="file" name="uploads" accept="image/*" multiple /><br>
                     </p>
                     <p>
                         <input type="button" onclick="history.back(-2); return false;" value="Назад" />
