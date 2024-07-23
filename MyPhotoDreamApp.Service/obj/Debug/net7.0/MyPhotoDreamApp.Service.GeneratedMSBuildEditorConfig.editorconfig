@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows,browser
 build_property.RootNamespace = MyPhotoDreamApp.Service
-build_property.ProjectDir = C:\CSharpProjects\MyPhotoDreamApp\MyPhotoDreamApp.Service\
+build_property.ProjectDir = C:\Users\senko\source\repos\MyPhotoDreamApp\MyPhotoDreamApp.Service\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

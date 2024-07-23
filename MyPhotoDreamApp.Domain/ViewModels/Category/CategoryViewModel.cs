@@ -11,7 +11,8 @@ namespace MyPhotoDreamApp.Domain.ViewModels.Category
     {
         public int Id { get; set; }
 
-        [MaxLength(25, ErrorMessage = "Название не должно превышать длину в 25 симврлов")]
+
+        [MaxLength(25, ErrorMessage = "Название не должно превышать длину в 25 символов")]
         [Required(ErrorMessage = "Укажите название категории")]
         [Display(Name = "Название категории")]
         public string Name { get; set; }

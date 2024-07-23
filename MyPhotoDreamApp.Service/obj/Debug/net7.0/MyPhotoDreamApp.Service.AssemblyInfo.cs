@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyPhotoDreamApp.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab497f53b96c8fc42097680b801ceb67753dee40")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyPhotoDreamApp.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyPhotoDreamApp.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
