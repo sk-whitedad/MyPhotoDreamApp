@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyPhotoDreamApp.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab497f53b96c8fc42097680b801ceb67753dee40")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f008c1cf2023ddb2f4d55a32f5905feb1e839c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyPhotoDreamApp.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyPhotoDreamApp.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
