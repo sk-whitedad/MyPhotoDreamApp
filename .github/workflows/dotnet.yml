@@ -27,14 +27,14 @@ jobs:
       working-directory: ./MyPhotoDreamApp
       run: dotnet publish -c Release -o deploy
     - name: Run SSH command 0
-      uses: garygrossgarten/github-action-ssh@v0.8.0
+      uses: garygrossgarten/github-action-ssh@release
       with:
         command: sudo chown -R admin:www /home/www/
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.REMOTE_SSH_KEY }}
     - name: Copy via ssh
-      uses: garygrossgarten/github-action-scp@v0.9.0
+      uses: garygrossgarten/github-action-scp@release
       with:
         local: /home/runner/work/MyPhotoDreamApp/MyPhotoDreamApp/MyPhotoDreamApp/deploy/
         remote: ${{ secrets.REMOTE_TARGET }}
