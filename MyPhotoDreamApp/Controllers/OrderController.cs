@@ -142,10 +142,10 @@ namespace MyPhotoDreamApp.Controllers
                 return RedirectToAction("Index", "Home");
 			}
 
-            if (checkDelivery == false)
-            {
-                deliveryAddress = "";
-			}
+   //         if (checkDelivery == false)
+   //         {
+   //             deliveryAddress = "";
+			//}
  			var confirmOrder = new ConfirmOrder()
             {
 				SummOrder = Convert.ToDecimal(finalSumm1),

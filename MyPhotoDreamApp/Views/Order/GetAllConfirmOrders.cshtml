@@ -34,7 +34,7 @@ else
 				@foreach (var item in Model)
 				{
 					var phone = $"8{item.PhoneNumber}";
-					var address = "-";
+					var address = "";
 					if (String.IsNullOrEmpty(address))
 					{
 						address = item.DeliveryAddress;
